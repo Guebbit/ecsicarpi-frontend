@@ -1,0 +1,59 @@
+{
+	"meta": {
+		"title": "Rogheneach - Fantasy Medievale Storico",
+		"description": "Rogheneach è un mondo fantasy in chiave storica. Federico I detto Barbarossa è un Gallipode che invade l'Italia con un esercito di draghi...",
+		"og": {
+			"og:image": "https://rogheneach.com/assets/images/generic/medium/preview.jpg",
+			"og:image:alt": "copertina volume 2 Rogheneach atteso seguito",
+			"og:image:width": "600",
+			"og:image:height": "337",
+			"og:image:type": "image/jpg",
+			"twitter:image": "https://rogheneach.com/assets/images/generic/medium/preview.jpg",
+			"twitter:title": "Rogheneach - Fantasy Medievale Storico",
+			"twitter:description": "Rogheneach è un mondo fantasy in chiave storica. Federico I detto Barbarossa è un Gallipode che invade l'Italia con un esercito di draghi...",
+			"twitter:card": "summary"
+		}
+	},
+	"generic": {
+		"author": {
+			"username": "Mychron",
+			"name": "Myriam Savini",
+			"email": "myriam.savini@gmail.com",
+			"bio": [
+				"Disegnatrice da bambina, fumettista da adulta, sognatrice da sempre."
+			]
+		},
+		"follow-me": "Seguimi per vedere altri fumetti, illustrazioni e tutorial"
+	},
+	"social": {
+		"website": {
+			"url": "https://mychron.it/",
+			"alt": "website mychron rogheneach",
+			"text": "Website"
+		},
+		"patreon": {
+			"url": "https://www.patreon.com/mychrontales",
+			"alt": "patreon mychron rogheneach",
+			"text": "Patreon"
+		},
+		"facebook": {
+			"url": "https://www.facebook.com/mychronmyriamsavini/",
+			"alt": "facebook mychron rogheneach",
+			"text": "Facebook"
+		},
+		"tumblr": {
+			"url": "https://myriamsaviniart.tumblr.com/",
+			"alt": "tumblr mychron rogheneach",
+			"text": "Tumblr"
+		}
+	},
+
+	"authorWho" : {
+		"background-meta-alt": "Myriam Savini Mychron, artworks and fanarts",
+		"background-meta-title": "Myriam Savini Mychron, artworks and fanarts"
+	},
+
+	"makingOf": {
+		"background-meta-title": "Speedpaint Berenice. Rogheneach fantasy"
+	}
+}
