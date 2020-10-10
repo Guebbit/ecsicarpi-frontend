@@ -9,7 +9,7 @@
 		<hero-header
 			:title="event.title"
 			:subtitle="event.subtitle"
-			:cover="coverGallery[0]"
+			:cover="coverGallery.length > 0 ? coverGallery[0] : null"
 		>
 		<div class="colorButton1 call-to-action-wrapper">
 			{{ $t("subscribe") }}!
@@ -50,7 +50,13 @@
 		<section-contacts
 
 		/>
-		<section-subscription
+
+		<section-paywall-subscription
+			v-if="event.paywall"
+			:price="event.paywall"
+		/>
+		<section-free-subscription
+			v-else
 			:arrayUrls="event.array_urls"
 		/>
 
@@ -72,7 +78,8 @@ import HeroHeader from '@/components/generic/HeroHeader.vue';
 import sectionTimer from '@/components/events/Timer.vue';
 import infoPanel from '@/components/events/PrimaryInfo.vue';
 import sectionContacts from '@/components/events/Contatti.vue';
-import sectionSubscription from '@/components/events/Iscrizione.vue';
+import sectionFreeSubscription from '@/components/events/IscrizioneGratuita.vue';
+import sectionPaywallSubscription from '@/components/events/IscrizionePagamento.vue';
 import sectionCollab from '@/components/events/Collab.vue';
 
 const Component = Vue.extend({
@@ -98,7 +105,8 @@ const Component = Vue.extend({
 		sectionTimer,
 		infoPanel,
 		sectionContacts,
-		sectionSubscription,
+		sectionFreeSubscription,
+		sectionPaywallSubscription,
 		sectionCollab,
 	},
 	computed: {
@@ -220,6 +228,7 @@ export default Component;
 
 
 #event-details-page{
+	margin-bottom: 50px;
 	.heroPanel2{
 		overflow: visible;
 		margin-bottom: 150px;

@@ -96,7 +96,7 @@ export default {
 		subFolders: true,
 		routes() {
 			// can't use store
-			return axios.get('https://mangabeats.api.guebbit.com/events').then(data => {
+			return axios.get(process.env.API_URL+'events').then(data => {
 				return data.data.map(event => {
 					return {
 						route: '/events/' + event.uri,

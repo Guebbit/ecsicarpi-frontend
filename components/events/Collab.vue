@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<h2 class="page-title mb-50">Sponsor</h2>
 		<div class="sponsorPanel">
 			<a v-for="sponsor in sponsors" :href="sponsor.url" target="_blank">
 				<img v-if="sponsor.media.thumb100"
@@ -17,6 +18,7 @@
 				/>
 			</a>
 		</div>
+		<h2 class="page-title mt-100 mb-50">Collaborazioni</h2>
 		<div class="collabPanel3">
 		    <div>
 		        <div v-for="collab in collaborators">

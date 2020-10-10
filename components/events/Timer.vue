@@ -68,10 +68,7 @@ const Component = Vue.extend({
 			required: true,
 		} as PropOptions<string>,
 		end: {
-			type: String,
-			default: () => {
-				return '';
-			}
+			type: String
 		} as PropOptions<string>,
 	},
 	computed:{
@@ -79,6 +76,8 @@ const Component = Vue.extend({
 			return new Date(this.start);
 		},
 		endDate() :Date {
+			if(!this.end)
+				return new Date(this.start);
 			return new Date(this.end);
 		},
 

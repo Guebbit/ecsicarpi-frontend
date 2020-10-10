@@ -142,7 +142,9 @@ export default Component;
 */
 
 section{
-	min-height: 80vh;
+	min-height: 90vh;
+	padding-top: 10vh;
+	padding-bottom: 10vh;
 }
 
 .page-title,
@@ -162,7 +164,6 @@ section{
 	}
 }
 .page-subtitle{
-	margin-top: 0.5em;
 	span{
 		background: rgba($secondary,0.9);
 	}

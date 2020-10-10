@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div id="landing-page" class="container">
 
 		<div class="mt-100 mb-100">
 			<h1 class="text-center">ECSI Carpi COMING SOON</h1>
@@ -56,7 +56,12 @@ export default Component;
 </script>
 
 <style lang="scss">
-.event-link{
-	text-decoration: none !important;
+#landing-page{
+	margin-bottom: 50px;
+	.event-link{
+		text-decoration: none !important;
+	}
 }
+
+
 </style>

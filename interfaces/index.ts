@@ -24,6 +24,7 @@ export interface partnerMap {
 }
 
 export interface eventMap {
+	//TODO
 	[parameter :string]: any
 }
 

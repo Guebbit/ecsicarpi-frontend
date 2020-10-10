@@ -1,6 +1,6 @@
 <template>
 	<div class="heroPanel2 full-height">
-		<video v-if="cover.media.chunkType === 'video'"
+		<video v-if="cover && cover.media.chunkType === 'video'"
 			class="background"
 			async=""
 			autoplay=""
@@ -10,7 +10,7 @@
 		>
 			<source :src="cover.media.url" type="video/mp4">
 		</video>
-		<template v-if="cover.media.chunkType === 'image'">
+		<template v-if="cover && cover.media.chunkType === 'image'">
 			<img v-if="cover.media.thumbnail"
 				class="background"
 				:src="cover.media.thumb100"
@@ -57,7 +57,7 @@ const Component = Vue.extend({
 		cover: {
 			type: Object,
 			required: false
-		} as PropOptions<mediaMap | false>,
+		} as PropOptions<mediaMap>,
 	}
 });
 
@@ -65,7 +65,7 @@ const Component = Vue.extend({
 export default Component;
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/core';
 
 .heroPanel2{
@@ -73,6 +73,9 @@ export default Component;
 		& > div{
 			padding: 24px;
 		}
+	}
+	.page-subtitle{
+		margin-top: 0.5em;
 	}
 }
 </style>
