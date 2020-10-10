@@ -1,0 +1,109 @@
+// @extend solo classi ASTRATTE (%) perché non devono comparire perché con
+// classi normali crea strane catene di eredità.
+// In ogni caso vanno utilizzate solo per motivi specifici di una classe,
+// altrimenti causano problemi di specificità nel codice
+
+// @mixin è adatto a tutte le cose che necessitano di essere ripetute
+@mixin builder_abscenter-xy(){
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	@include prefix((
+		transform: translate(-50%,-50%)
+	), webkit);
+}
+@mixin builder_abscenter-x(){
+	position: absolute;
+	left: 50%;
+	@include prefix((
+		transform: translate(-50%, 0)
+	), webkit);
+}
+@mixin builder_abscenter-y(){
+	position: absolute;
+	top: 50%;
+	@include prefix((
+		transform: translate(0, -50%)
+	), webkit);
+}
+@mixin builder_fullcenter(){
+	position: absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width: 100%;
+}
+@mixin builder_background(){
+	@include builder_abscenter-xy;
+	width: 100%;
+	height: 100%;
+	@include prefix((
+		object-fit: cover
+	), o);
+}
+@mixin builder_flex(){
+	display: flex;
+	align-items: center;
+}
+@mixin builder_flexcenter(){
+	@include builder_flex;
+	justify-content: center;
+}
+@mixin builder_flexaround(){
+	@include builder_flex;
+	justify-content: space-around;
+}
+@mixin builder_flexevenly(){
+	@include builder_flex;
+	justify-content: space-evenly;
+}
+@mixin builder_flexbetween(){
+	@include builder_flex;
+	justify-content: space-between;
+}
+
+
+%builder_abscenter-xy{
+	@include builder_abscenter-xy;
+}
+%builder_abscenter-x{
+	@include builder_abscenter-x;
+}
+%builder_abscenter-y{
+	@include builder_abscenter-y;
+}
+%builder_fullcenter{
+	@include builder_fullcenter;
+}
+%builder_background{
+	@include builder_flex;
+}
+%builder_flex{
+	@include builder_flex;
+}
+%builder_flexcenter{
+	@include builder_flexcenter;
+}
+%builder_flexaround{
+	@include builder_flexaround;
+}
+%builder_flexevenly{
+	@include builder_flexevenly;
+}
+
+
+
+/**
+*	Setting the margin property on a flex child will push the child away from that direction.
+*	Set margin-left to auto, the child will push right. Set margin-top to auto and the child will push to the bottom.
+**/
+//non sto a fare tutte le combinazioni
+@mixin builder_flexmargin(){
+	@include builder_flex;
+	& > *{
+		margin: auto;
+	}
+}
+%builder_flexmargin{
+	@include builder_flexmargin;
+}

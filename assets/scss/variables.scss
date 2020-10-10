@@ -2,3 +2,25 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+
+$primary-color: #3A319C;
+$secondary-color: #FF6D10;
+$theme-colors: (
+	"primary": 		$primary-color,
+	"secondary":	$secondary-color,
+	//"info":		$info,
+	//"success":	$success,
+	//"warning":	$warning,
+	//"danger": 	$danger,
+	//"light":  	$light,
+	//"dark":   	$dark
+);
+$primary: $primary-color;
+$secondary: $secondary-color;
+
+//components
+$soccerBall1-color: $primary;
+$soccerBall1-speed: 1.5s;
+$CSShake1-duration: 0.4s;
+$colorButton1-speed: 4s;
+$colorButton1-border-radius: 10px;

@@ -1,0 +1,56 @@
+//TODO guebbit
+$colorButton1-size: 100px !default;
+$colorButton1-font: $colorButton1-size/3 !default;
+$colorButton1-height: $colorButton1-size !default;
+$colorButton1-width: $colorButton1-size*3 !default;
+
+$colorButton1-speed: 8s !default;
+$colorButton1-rotation: -45deg !default;
+$colorButton1-border-radius: 50px !default;
+
+$colorButton1-color: #FFFFFF !default;
+$colorButton1-background-1: $primary-color !default;
+$colorButton1-background-2: $secondary-color !default;
+$colorButton1-background-3: $primary-color !default;
+$colorButton1-background-4: $secondary-color !default;
+
+/*
+$colorButton1-background-1: #FFA63D;
+$colorButton1-background-2: #FF3D77;
+$colorButton1-background-3: #338AFF;
+$colorButton1-background-4: #3CF0C5;
+*/
+
+%colorButton1-abstract{
+	width: $colorButton1-width;
+	height: $colorButton1-height;
+	font-size: $colorButton1-font;
+	line-height: $colorButton1-height;
+	text-align: center;
+	margin: 0 auto;
+	color: rgba($colorButton1-color,0.9);
+	border-radius: $colorButton1-border-radius;
+	background: linear-gradient($colorButton1-rotation, $colorButton1-background-1, $colorButton1-background-2, $colorButton1-background-3, $colorButton1-background-4);
+	background-size: 600%;
+	animation: colorButton1-animation $colorButton1-speed linear infinite;
+}
+
+.colorButton1{
+	@extend %colorButton1-abstract;
+	&:after{
+		content: '';
+		display: block;
+		@extend %colorButton1-abstract;
+		position: absolute;
+		margin-top: -70px;
+		z-index: -1;
+		filter: blur(30px);
+		opacity: 0.8;
+	}
+}
+
+@keyframes colorButton1-animation {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%;	}
+}

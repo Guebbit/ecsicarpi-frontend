@@ -1,0 +1,472 @@
+/**
+*	Media queries
+*	@param string $media: requested size
+*	@content
+**/
+@mixin builder_media($media) {
+	//LARGE ONLY
+	@if $media == "large" {
+		@media only screen and (min-width: 993px) {
+			@content;
+		}
+	}
+	//MEDIUM ONLY
+	@else if $media == "medium" {
+		@media only screen and (min-width: 600px) and (max-width: 992px) {
+			@content;
+		}
+	}
+	//SMALL ONLY
+	@else if $media == "small" {
+		@media only screen and (max-width: 600px) {
+			@content;
+		}
+	}
+	//MEDIUM AND LARGE
+	@else if $media == "medium-large" {
+		@media only screen and (min-width: 601px) {
+			@content;
+		}
+	}
+	//SMALL AND MEDIUM
+	@else if $media == "small-medium" {
+		@media only screen and (max-width: 992px) {
+			@content;
+		}
+	}
+}
+
+
+/**
+*	Compatibility mode for browsers
+*	@param string $browser: target browser
+*	@content
+**/
+@mixin builder_compatibility($browser) {
+	//INTERNET EXPLORER
+	@if $browser == "ie" {
+		@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+			@content;
+		}
+	}
+	// MICROSOFT EDGE
+	@if $browser == "edge" {
+		@supports (-ms-ime-align:auto) {
+			@content;
+		}
+	}
+}
+
+
+/**
+*	box-shadows of element
+*	@param string $color
+*	@param integer $intensity
+**/
+@mixin builder_shadow($color,$intensity:1) {
+	@if $intensity == 1 {
+		@include prefix((
+			box-shadow: (0 2px 2px 0 rgba($color, 0.14),
+						0 3px 1px -2px rgba($color, 0.12),
+						0 1px 5px 0 rgba($color, 0.2))
+		), webkit);
+	}
+	@else if $intensity == 2 {
+		@include prefix((
+			box-shadow: (0 8px 17px 2px rgba($color, 0.14),
+						0 3px 14px 2px rgba($color, 0.12),
+						0 5px 5px -3px rgba($color, 0.2))
+		), webkit);
+	}
+	@else if $intensity == 3 {
+		@include prefix((
+			box-shadow: (0 24px 38px 3px rgba($color, 0.14),
+						0 9px 46px 8px rgba($color, 0.12),
+						0 11px 15px -7px rgba($color, 0.2))
+		), webkit);
+	}
+}
+
+
+/**
+*	text-shadow of element
+*	@param string $color
+*	@param integer $intensity
+**/
+@mixin builder_textshadow($color,$intensity:1) {
+	@if $intensity == 1 {
+		text-shadow: rgba($color,0.1) 0 0 1px
+	}
+	@else if $intensity == 2 {
+		text-shadow: rgba($color,0.2) 0 0 1px
+	}
+	@else if $intensity == 3 {
+		text-shadow: rgba($color,0.5) 0 0 1px
+	}
+}
+
+
+/**
+*	scrollbars of element
+*	@param string $color
+*	@param pixels $size
+*	@param $background: if false, has default lighten 40%
+**/
+@mixin builder_scrollbar($color,$size,$background:false) {
+	@if $background==false{
+		$background: lighten($color, 40%);
+	}
+	&::-webkit-scrollbar{
+		width:$size;
+		height:$size;
+		background-color: $background;
+		//box-shadow: inset 0 0 6px rgba($color, 0.3);
+	}
+	&::-webkit-scrollbar-thumb{
+		border-radius: 10px;
+		background-color: $color;
+		//box-shadow: inset 0 0 6px $color;
+	}
+	&::-webkit-scrollbar-corner{
+		background-color: $background;
+	}
+}
+
+
+/**
+*	placeholder for inputs
+*	@content
+**/
+@mixin builder_placeholder() {
+	&::placeholder {
+		@content;
+	}
+	&:-ms-input-placeholder {
+		@content;
+	}
+	&::-ms-input-placeholder {
+		@content;
+	}
+}
+
+
+
+/**
+*	crea striature su un background
+*	@param color $color
+*	@param px $size
+*	@param deg $deg
+**/
+@mixin builder_striped($color, $size:50px, $deg:45deg) {
+	@include prefix((
+		background-image: (repeating-linear-gradient($deg,
+									transparent,
+									transparent $size,
+									$color $size,
+									$color $size*2
+								)
+							)
+	), webkit, true);
+}
+
+
+
+/*
+background: rgba($color,0.5);							// colored background
+box-shadow: 2px 2px 5px 10px rgba($color,0.5);   		// full shadow
+&:focus {
+	border-bottom: none !important;
+	box-shadow: 0 0 5px 0 $color !important;
+}
+*/
+
+/**
+*	set a custom color for the inputs
+*	TODO: intensity 2 da pianificare
+*	@param string color
+*	@param integer intensity
+**/
+@mixin builder_color_form($primary, $secondary:null, $intensity:0) { //$intensity
+	@if $secondary==null {
+		$secondary: $primary;
+	}
+	$form-bg: g-color("shades","white") !default;
+	$form-focus-bg: lighten($primary, 20%) !default;
+	$form-color: $primary !default;
+	$form-focus-color: darken($form-color, 4%) !default;
+
+	$form-button-focus-bg: $form-focus-bg !default;
+	$form-radio-fill-color: $form-color !default;
+	$form-radio-border: 2px solid $form-radio-fill-color !default;
+	$form-v2-radio-color: darken($form-color, 4%) !default;
+	$form-v2-radio-fill-color: darken($form-color, 7%) !default;
+	$form-select-color: $form-focus-color !default;
+	$form-select-border-focus: 1px solid $form-focus-bg !default;
+	$form-input-focus-color: $form-radio-fill-color !default;
+	$temp-search-bg: $form-bg !default;
+	$temp-search-color: $off-black !default;
+	$temp-search-focus-bg: rgba($form-focus-bg,0.2) !default;
+	$temp-search-focus-color: $temp-search-color !default;
+	$form-switch-bg: $primary !default;
+	$form-switch-checked-lever-bg: desaturate(lighten($form-switch-bg, 25%), 25%) !default;
+
+	// --------------- COSTRUZIONE ---------------
+
+	// ++++++++ GENERIC ++++++++
+	select:focus {
+		outline: $form-select-border-focus;
+	}
+	button:focus {
+		background-color: $form-button-focus-bg;
+	}
+
+	// ++++++++ CHECKBOX ++++++++
+	[type="checkbox"] {
+		&:not(.filled-in):checked {
+			+ span:not(.lever):before {
+				border-right: $form-radio-border;
+				border-bottom: $form-radio-border;
+			}
+		}
+		&:indeterminate {
+			+ span:not(.lever):before {
+				border-right: $form-radio-border;
+			}
+		}
+		&.filled-in {
+			&:checked {
+				+ span:not(.lever):after {
+					border: 2px solid $primary;
+					background-color: $primary;
+				}
+			}
+			&.tabbed:checked:focus + span:not(.lever):after {
+				background-color: $primary;
+				border-color: $primary;
+			}
+		}
+	}
+
+	// ++++++++ INPUT-FIELDS ++++++++
+	input:not([type]),
+	input[type=text],//:not(.browser-default)
+	input[type=password],
+	input[type=email],
+	//input[type=url],
+	//input[type=time],
+	//input[type=date],
+	//input[type=datetime],
+	//input[type=datetime-local],
+	input[type=tel],
+	input[type=number],
+	input[type=search],
+	input.dropdown-trigger,
+	textarea.materialize-textarea {
+		&:not([readonly]){
+			&:focus {
+				border-bottom: 1px solid $form-input-focus-color;
+				box-shadow: 0 1px 0 0 $form-input-focus-color;
+			}
+			// Focused label style
+			&:focus+label {
+				color: $form-input-focus-color;
+			}
+		}
+		@if $intensity > 0 {
+			// ++++++++ UNDERLINE ++++++++
+			border-bottom: 1px solid $primary;
+			&:focus {
+				border-bottom: 1px solid $form-focus-color;
+				box-shadow: 0 1px 0 0 $form-focus-color;	// bottom shadow only
+			}
+
+			// ++++++++ LABEL ++++++++
+			& + label{
+				color: $primary;
+				i{
+					color: $primary;
+				}
+				&.active{
+					color: $form-focus-color;
+					i{
+						color: $form-focus-color;
+					}
+				}
+			}
+		}
+	} //ALL inputs
+
+	@if $intensity > 0 {
+		input:not(:disabled){
+
+			@include builder_placeholder() {
+				color: $primary;
+			}
+
+			// ++++++++ RADIO ++++++++
+			&[type="radio"]:not(:checked){
+				& + span{
+					&:before,
+					&:after{
+						border: 2px solid $form-v2-radio-color;
+					}
+				}
+			}
+
+			// ++++++++ CHECKBOX ++++++++
+			&[type="checkbox"]:not(:checked){
+				&:not(.filled-in){
+					& + span:not(.lever):before{
+						border: 2px solid $form-v2-radio-color;
+					}
+				}
+				&.filled-in{
+					& + span:not(.lever):after{
+						border: 2px solid $form-v2-radio-color;
+					}
+				}
+			}
+			//TESTO BOX
+			&[type="radio"],
+			&[type="checkbox"]{
+				&:checked{
+					& + span{
+						color: $form-focus-color;
+					}
+				}
+				& + span{
+					color: $primary;
+				}
+			}
+		}
+		.input-field{
+			.prefix{
+				color: $primary;
+				&.active{
+					color: $form-focus-color;
+				}
+			}
+		}
+	}
+
+	// Prefix Icons
+	.prefix {
+		&.active {
+			color: $form-input-focus-color;
+		}
+	}
+
+	// ++++++++ SEARCH ++++++++
+	input[type=search]{
+		background-color: $temp-search-bg;
+		&:focus{
+			color: $temp-search-focus-color;
+		}
+		& + label{
+			i{
+				color: inherit;
+			}
+		}
+	}
+
+	// ++++++++ RADIO-BUTTONS ++++++++
+	input[type="radio"]{
+		&:checked + span:after,
+		&.with-gap:checked + span:before,
+		&.with-gap:checked + span:after {
+			border: $form-radio-border;
+		}
+		&:checked + span:after,
+		&.with-gap:checked + span:after {
+			background-color: $form-radio-fill-color;
+		}
+	}
+
+	// ++++++++ RANGE ++++++++
+	input[type=range]{
+		& + .thumb {
+		   background-color: $form-radio-fill-color;
+		   .value {
+			   color: $form-radio-fill-color;
+		   }
+	   }
+	   &::-webkit-slider-thumb {
+		   background: $form-radio-fill-color;
+		   background-color: $form-radio-fill-color;
+	   }
+	   &::-moz-range-thumb {
+		   background: $form-radio-fill-color;
+	   }
+	   &::-ms-thumb {
+		   background: $form-radio-fill-color;
+	   }
+	}
+	/*
+	.keyboard-focused{
+		input[type=range]{
+			&:focus:not(.active)::-webkit-slider-thumb {
+				box-shadow: 0 0 0 10px rgba($form-radio-fill-color, .26);
+			}
+			&:focus:not(.active)::-moz-range-thumb {
+				box-shadow: 0 0 0 10px rgba($form-radio-fill-color, .26);
+			}
+			&:focus:not(.active)::-ms-thumb {
+				box-shadow: 0 0 0 10px rgba($form-radio-fill-color, .26);
+			}
+		}
+	}
+	*/
+
+	// ++++++++ SELECT ++++++++
+	.select-wrapper {
+		& + label{
+			z-index: 1;
+			color: $form-select-color;
+		}
+		.dropdown-trigger {
+			&:focus {
+				border-bottom: 1px solid $form-input-focus-color;
+			}
+		}
+		.dropdown-content{
+			& > li{
+				color: $form-select-color;
+				a,
+				span{
+					color: inherit;
+				}
+				&.selected.disabled{
+					color: $select-disabled-color;
+				}
+			}
+		}
+	}
+
+
+	// ++++++++ SWITCH ++++++++
+	.switch label{
+		input[type=checkbox] {
+			&:checked{
+				& + .lever {
+				   background-color: $form-switch-checked-lever-bg;
+			   }
+			   &:not(:disabled){
+				   & + .lever{
+					   &:after {
+						   background-color: $form-switch-bg;
+					   }
+				   }
+				   & ~ .lever:active::before,
+				   &.tabbed:focus ~ .lever::before {
+					   background-color: transparentize($form-switch-bg, .85);
+				   }
+			   }
+			}
+		}
+		.lever {
+			&:before {
+				background-color: transparentize($form-switch-bg, .85);
+			}
+		}
+	}
+}

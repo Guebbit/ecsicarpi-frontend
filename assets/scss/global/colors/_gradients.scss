@@ -1,0 +1,41 @@
+//TODO creare una funzione che li genera in automatico (insieme al .gradient-shadow), si tratta di fare gruppi di 2 colori e di usare il 2° come ombra.
+// https://stackoverflow.com/questions/17482726/sass-variables-and-gradient
+
+$colors: () !default;
+$colors: map-merge($colors,(
+	"gradient-45": (
+		"light-blue-teal": (linear-gradient(45deg, g-color("light-blue", "lighten-4") 0%, g-color("teal", "accent-2") 100%)),
+		"indigo-light-blue-2": (linear-gradient(45deg, g-color("indigo", "lighten-4") 0%, g-color("light-blue", "lighten-4") 100%)),
+		"light-blue-indigo": (linear-gradient(45deg, g-color("light-blue", "lighten-4") 0%, g-color("indigo", "lighten-3") 100%)),
+		"yellow-green": (linear-gradient(45deg, g-color("yellow", "accent-1") 0%, g-color("green", "accent-1") 100%)),
+		"orange-deep-orange": (linear-gradient(45deg, g-color("orange", "lighten-4") 0%, g-color("deep-orange", "lighten-4") 100%)),
+		"deep-purple-purple": (linear-gradient(45deg, g-color("deep-purple", "lighten-4") 0%, g-color("purple", "lighten-5") 100%)),
+		"red-pink": (linear-gradient(45deg, g-color("red", "accent-2") 0%, g-color("pink", "lighten-3") 100%)),
+		"green-amber": (linear-gradient(45deg, g-color("light-green", "lighten-3") 0%, g-color("amber", "lighten-5") 100%)),
+		"amber-amber": (linear-gradient(45deg, g-color("amber", "darken-4") 0%, g-color("amber", "lighten-1") 100%)),
+		"purple-pink": (linear-gradient(45deg, g-color("purple", "accent-1") 0%, g-color("pink", "lighten-5") 100%)),
+		"indigo-light-blue": (linear-gradient(45deg, g-color("indigo", "darken-1") 0%, g-color("light-blue", "lighten-2") 100%)),
+		"teal-cyan": (linear-gradient(45deg, g-color("teal", "lighten-5") 0%, g-color("cyan", "accent-3") 100%)),
+		"blue-grey-blue-grey": (linear-gradient(45deg, g-color("blue-grey", "lighten-4") 0%, g-color("blue-grey", "darken-1") 100%)),
+		"cyan-light-green-2": (linear-gradient(45deg, g-color("cyan" , "darken-2") 0%, g-color("light-green", "accent-2") 100%)),
+		"orange-amber": (linear-gradient(45deg, g-color("orange" , "darken-4") 0%, g-color("amber", "darken-2") 100%)),
+		"indigo-blue": (linear-gradient(45deg, g-color("indigo" , "darken-2") 0%, g-color("blue", "darken-2") 100%)),
+		"brown-brown": (linear-gradient(45deg, g-color("brown" , "darken-1") 0%, g-color("brown", "lighten-4") 100%)),
+		"blue-grey-blue": (linear-gradient(45deg, g-color("blue-grey" , "darken-4") 0%, g-color("blue", "accent-3") 100%)),
+		"purple-deep-orange": (linear-gradient(45deg, g-color("purple" , "darken-1") 0%, g-color("deep-orange", "accent-2") 100%)),
+		"green-teal": (linear-gradient(45deg, g-color("green" , "darken-1") 0%, g-color("teal", "accent-3") 100%)),
+		"purple-light-blue": (linear-gradient(45deg, g-color("purple" , "accent-2") 0%, g-color("light-blue", "lighten-2") 100%)),
+		"cyan-cyan": (linear-gradient(45deg, g-color("cyan" , "accent-2") 0%, g-color("cyan", "accent-3") 100%)),
+		"yellow-teal": (linear-gradient(45deg, g-color("yellow" , "lighten-4") 0%, g-color("teal", "accent-2") 100%)),
+		"purple-deep-purple": (linear-gradient(45deg, g-color("purple" , "darken-2") 0%, g-color("deep-purple", "accent-2") 100%)),
+		"cyan-light-green": (linear-gradient(45deg, g-color("cyan" , "accent-3") 0%, g-color("light-green", "accent-1") 100%)),
+		"purple-amber": (linear-gradient(45deg, g-color("purple" , "accent-3") 0%, g-color("amber", "darken-2") 100%)),
+		"indigo-purple": (linear-gradient(45deg, g-color("indigo" , "darken-2") 0%, g-color("purple", "darken-2") 100%)),
+		"deep-purple-blue": (linear-gradient(45deg, g-color("deep-purple" , "accent-4") 0%, g-color("blue", "darken-2") 100%)),
+		"deep-orange-orange": (linear-gradient(45deg, g-color("deep-orange" , "darken-4") 0%, g-color("orange", "darken-2") 100%)),
+		"light-blue-cyan": (linear-gradient(45deg, g-color("light-blue" , "darken-2") 0%, g-color("cyan", "lighten-1") 100%)),
+		"blue-indigo": (linear-gradient(45deg, g-color("blue" , "accent-4") 0%, g-color("indigo", "darken-1") 100%)),
+		"semi-dark": (linear-gradient(-90deg, #00AEFF 0%, #3369E6 100%))
+		)
+	)
+);

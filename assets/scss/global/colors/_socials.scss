@@ -1,0 +1,20 @@
+$colors: () !default;
+$colors: map-merge($colors,(
+	"social": (
+		"facebook":     #3B5998,
+		"instagram":  	linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%),
+		"youtube":      #cc181e,
+	    "twitter":      #33ccff,
+	    "skype":        #00aff0,
+	    "linkedin":     #1565c0,
+		"whatsapp":		#4ac959,
+		"twitch":		#6441A4,
+		"pinterest":	#E60023,
+		"reddit":		#FF4301,
+		"tumblr":		#35465C,
+		"patreon": 		#f96854,
+		"kickstarter":  #05ce78,
+		)
+	)
+);
+$instagram-fallback: #f09433;

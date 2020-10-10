@@ -1,0 +1,100 @@
+$cardPanel4-height: 400px !default;
+$cardPanel4-shadow-color: g-color("shades","white") !default;
+
+.cardPanel4 {
+    min-height: $cardPanel4-height;
+    position: relative;
+    display: flex;
+    align-items: center;
+	overflow: hidden;
+	z-index: 1;
+	.fixed-container,
+	.static-container {
+	    width:100%;
+		height: 100%;
+	    overflow: hidden;
+	}
+	.fixed-container {
+	    position: absolute;
+	    z-index: -1;
+		& > .row{
+			height: 100%;
+			& > *,
+			img {
+				max-height: 100%;
+			}
+		}
+	}
+	.card-wrapper{
+		height: 100%;
+		position: relative;
+		z-index: 1;
+	}
+	.card-image{
+		& > img{
+			@include builder_background;
+		}
+	}
+
+	// -------- MODES --------
+	&.with-shadow,
+	&.special-shadow{
+		position: relative;
+		z-index: 1;
+		&::after {
+			content: "";
+			@include builder_fullcenter;
+			z-index: -1;
+		}
+	}
+	&.with-shadow{
+		&::after {
+			background: $cardPanel4-shadow-color;
+		}
+	}
+	&.special-shadow{
+		&::after{
+			@include prefix((
+				box-shadow: (inset 0 0 100px $cardPanel4-shadow-color,
+							inset 0 0 100px $cardPanel4-shadow-color)
+			), webkit);
+		}
+	}
+
+	&.text-with-shadow{
+		.text-wrapper{
+			padding: 12px 24px;
+			background-color: rgba($cardPanel4-shadow-color,0.6);
+			text-shadow: 0.03em 0.03em 2px $cardPanel4-shadow-color, 0.03em 0.03em 2px $cardPanel4-shadow-color;
+		}
+	}
+
+	&.image-with-shadow,
+	&.image-special-shadow{
+		.card-image{
+			&::after {
+				content: "";
+				@include builder_fullcenter;
+			}
+		}
+	}
+	&.image-with-shadow{
+		.card-image{
+			&::after {
+				background: $cardPanel4-shadow-color;
+			}
+		}
+	}
+	&.image-special-shadow{
+		.card-image{
+			&::after{
+				@include prefix((
+					box-shadow: (inset 0 0 20px $cardPanel4-shadow-color,
+								inset 0 0 20px $cardPanel4-shadow-color,
+								inset 0 0 100px $cardPanel4-shadow-color,
+								inset 0 0 100px $cardPanel4-shadow-color)
+				), webkit);
+			}
+		}
+	}
+}

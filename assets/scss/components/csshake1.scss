@@ -1,0 +1,101 @@
+@mixin CSShake1($x, $y, $rot, $name, $steps:10, $opacity:false) {
+	$r:0deg;
+	$h:0px;
+	$v:0px;
+
+	$interval: $steps;
+	$step: 0%;
+
+	@keyframes #{$name}{
+		@while $step < 100% {
+			@if ($rot != 0deg){ $r : random($rot) - $rot/2;}
+				@else { $r : 0deg; }
+			@if ($x != 0px){ $h : random($x) - $x/2; }
+				@else { $h : 0px; }
+			@if ($y != 0px){ $v : random($y) - $y/2; }
+				@else { $v : 0px; }
+			@if($step == 0%){
+				#{$step} {
+					transform: translate(0px, 0px) rotate(0deg);
+					@if($opacity){
+						opacity: random(10)*.1;
+					}
+				}
+			} @else {
+				#{$step} {
+					transform: translate($h, $v) rotate($r);
+					@if($opacity){
+						opacity: random(10)*.1;
+					}
+				}
+			}
+			$step: $step + $interval;
+		}
+
+	}
+}
+
+
+
+
+$CSShake1-duration: 0.5s !default;
+$CSShake1-iteration: infinite !default;
+$CSShake1-timing: ease-in-out !default;
+$CSShake1-delay: 0s !default;
+
+.CSShake1 {
+	display: inline-block;
+	transform-origin: center center;
+	&.active,
+	&:hover {
+		animation-name: shake-base;
+		animation-duration: $CSShake1-duration;
+		animation-iteration-count: $CSShake1-iteration;
+		animation-timing-function: $CSShake1-timing;
+		animation-delay: $CSShake1-delay;
+		animation-play-state: running;
+		&.shake-hard {
+			animation-name: shake-hard;
+		}
+		&.shake-slow {
+			animation-name: shake-slow;
+			animation-duration: $CSShake1-duration*10;
+		}
+		&.shake-little {
+			animation-name: shake-little;
+		}
+		&.shake-horizontal {
+			animation-name: shake-horizontal;
+		}
+		&.shake-vertical {
+			animation-name: shake-vertical;
+		}
+		&.shake-rotate {
+			animation-name: shake-rotate;
+		}
+		&.shake-opacity {
+			animation-name: shake-opacity;
+			animation-duration: $CSShake1-duration*2;
+		}
+		&.shake-crazy {
+			animation-name: shake-crazy;
+		}
+	}
+	&.active{
+		&:hover{
+			animation-play-state: paused;
+		}
+	}
+}
+
+
+// The animations: its names and settings to call from animation mixin
+@include CSShake1(5px, 5px, 3deg, 'shake-base', 2);
+@include CSShake1(2px, 2px, 1deg, 'shake-little', 2);
+@include CSShake1(20px, 20px, 7deg, 'shake-slow', 2);
+@include CSShake1(20px, 20px, 7deg, 'shake-hard', 2);
+@include CSShake1(20px, 0px, 0deg, 'shake-horizontal', 2);
+@include CSShake1(0px, 20px, 0deg, 'shake-vertical', 2);
+@include CSShake1(0px, 0px, 15deg, 'shake-rotate', 2);
+@include CSShake1(10px, 10px, 5deg, 'shake-opacity', 10, true);
+@include CSShake1(40px, 40px, 20deg, 'shake-crazy', 10, true);

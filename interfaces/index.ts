@@ -1,3 +1,28 @@
+export interface MediaChunk {
+	url :string
+	thumb800 :string
+	thumb100 :string
+	chunkType :string
+}
+
+export interface mediaMap {
+	name :string
+	MediaChunk :MediaChunk
+	alt :string
+	title :string
+	role? :string
+}
+
+export interface partnerMap {
+	id :string
+	name :string
+	url :string
+	role :string
+	media :MediaChunk
+	alt :string
+	title :string
+}
+
 export interface eventMap {
 	[parameter :string]: any
 }

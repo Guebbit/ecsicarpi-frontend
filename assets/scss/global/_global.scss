@@ -1,0 +1,39 @@
+// divider
+hr{
+	border: none;
+    height: 1px;
+    background: $primary-color;
+}
+
+//homemade masonry
+.g-masonry{
+	@include prefix((
+		column-count: 3,
+		column-break-inside: avoid
+	), webkit);
+	@include builder_media("small") {
+		@include prefix((
+			column-count: 1
+		), webkit);
+	}
+	@include builder_media("medium") {
+		@include prefix((
+			column-count: 2
+		), webkit);
+	}
+	.g-item{
+		display: block;
+		overflow: visible;
+		@include prefix((
+			break-inside: avoid-column
+		), webkit);
+	}
+}
+
+// prefixes
+[data-prefix]::before{
+	content:attr(data-prefix);
+}
+[data-postfix]::after{
+	content:attr(data-postfix);
+}

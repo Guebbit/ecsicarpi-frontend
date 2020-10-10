@@ -1,0 +1,20 @@
+//https://stackoverflow.com/questions/19212352/div-height-based-on-child-image-height-adds-few-extra-pixels-at-the-bottom
+.container-fix{
+	font-size: 0;
+}
+
+//allineate bene con il testo a fianco
+.material-icons.fix{
+	vertical-align: sub;
+}
+
+//conflitto che rende invisibili i comandi sull'api di google maps
+.gm-style{
+	img,
+	button{
+		z-index: 1 !important;
+	}
+	button > img{
+		position: absolute !important;
+	}
+}

@@ -1,0 +1,84 @@
+$socialButton1-width: 90px !default;
+$socialButton1-mini-width: $socialButton1-width*0.5 !default;
+
+.socialButton1 {
+    display: inline-block;
+	font-size: $socialButton1-width;
+    width: 1em;
+    height: 1em;
+	color: $primary-color;
+    margin:10px;
+    position: relative;
+    overflow: hidden;
+    opacity: .99;
+    border-radius: 28%;
+	z-index: 1;
+	@include prefix((
+		transition: all 0.35s cubic-bezier(0.31, -0.105, 0.43, 1.59)
+	), webkit);
+	&:before {
+	    content: '';
+		z-index: -1;
+	    background-color: $primary-color;
+	    width: 120%;
+	    height: 120%;
+	    position: absolute;
+	    top: 90%;
+	    left: -110%;
+		@include prefix((
+			transform: rotate(45deg),
+			transition: all 0.35s cubic-bezier(0.31, -0.105, 0.43, 1.59)
+		), webkit);
+	}
+	.fa,
+	svg {
+	    font-size: 0.5em;
+	    position:absolute;
+	    top:50%;
+	    left:50%;
+		@include prefix((
+			transform:translate(-50%,-50%),
+			transition: all 0.35s cubic-bezier(0.31, -0.105, 0.43, 1.59)
+		), webkit);
+	}
+	&:focus,
+	&:hover{
+		color: color("shades","white") !important;
+		&::before{
+			top: -10%;
+			left: -10%;
+		}
+	}
+
+	@include builder_media("small") {
+		font-size: $socialButton1-mini-width;
+		margin: 5px;
+		.fa,
+		svg {
+			font-size: 0.8em;
+		}
+	}
+
+	// ---------- VARIANTI ----------
+	&.mini{
+		font-size: $socialButton1-mini-width;
+		margin: 5px;
+		.fa,
+		svg {
+			font-size: 0.8em;
+		}
+	}
+
+	// ---------- COLORI ----------
+	@each $sname, $scolor in map-get($colors, "social") {
+		&.#{$sname}{
+			color: $scolor;
+			&::before{
+				background: $scolor;
+			}
+		}
+	}
+	&.instagram{
+		color: $instagram-fallback;
+	}
+}

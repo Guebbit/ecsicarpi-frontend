@@ -1,12 +1,20 @@
 <template>
 	<div>
+		<main-header id="mainHeader" />
 		<Nuxt />
+		<main-footer id="mainFooter" />
 	</div>
 </template>
 
-
 <script>
+//TODO trovare come metterlo lang="ts" (head() non riconosciuto e problemi vari)
+// https://github.com/nuxt/typescript/issues/28
 import Vue from 'vue';
+
+import MainHeader from '@/components/generic/Header.vue';
+import MainFooter from '@/components/generic/Footer.vue';
+
+import { lazyload, activator } from "@/assets/js/temporaryGuebbit2";
 
 const Component = Vue.extend({
 	head () {
@@ -100,10 +108,17 @@ const Component = Vue.extend({
 			script: [],
 		}
 	},
+	components: {
+		MainHeader,
+		MainFooter
+	},
+	mounted(){
+		lazyload();
+		activator();
+	},
 });
 
 export default Component;
-
 </script>
 
 
@@ -111,25 +126,59 @@ export default Component;
 <style lang="scss">
 @import '~/assets/scss/variables.scss';
 
+@import '@/node_modules/bootstrap/scss/bootstrap';
+@import '@/node_modules/bootstrap-vue/src/index.scss';
+@import '@/assets/scss/global';
 
-$theme-colors: (
-	"primary": 		#3A319C,
-	"secondary":	#FF6D10,
-	//"info":		$info,
-	//"success":	$success,
-	//"warning":	$warning,
-	//"danger": 	$danger,
-	//"light":  	$light,
-	//"dark":   	$dark
-);
+@import '@/assets/scss/components/imagereveal2';
+@import '@/assets/scss/components/heropanel2';
+@import '@/assets/scss/components/simplelist1';
+@import '@/assets/scss/components/socialbutton1';
+@import '@/assets/scss/components/iconbutton1';
+
+/*
+@import '../../../archives/code/collabpanel3/collabpanel3';
+@import '../../../archives/code/simplefooter1/simplefooter1';
+*/
+
+section{
+	min-height: 80vh;
+}
+
+.page-title,
+.page-subtitle{
+	text-align: center;
+	span{
+		padding: 6px 12px;
+	}
+}
+.page-title{
+	text-transform: uppercase;
+	span{
+		background: rgba($primary,0.9);
+	}
+	@include media-breakpoint-up(lg) {
+		font-size: 2.5em;
+	}
+}
+.page-subtitle{
+	margin-top: 0.5em;
+	span{
+		background: rgba($secondary,0.9);
+	}
+	@include media-breakpoint-up(lg) {
+		font-size: 1.5em;
+	}
+}
+.page-description{
+	font-size: 1.2em;
+}
 
 
-@import 'node_modules/bootstrap/scss/bootstrap';
-@import 'node_modules/bootstrap-vue/src/index.scss';
-
+/*
 //RE-TODO guebbit mixin
 $shadowTitle1-size: 0.03em !default;
-$shadowTitle1-blur: 2px;
+$shadowTitle1-blur: 2px !default;
 
 .shadowTitle1{
 	font-weight:500;
@@ -157,31 +206,5 @@ $shadowTitle1-blur: 2px;
 		}
 	}
 }
-
-
-//TODO guebbit
-$soccerBall1-color: $primary !default;
-$soccerBall1-speed: 1s !default;
-.soccerBall1{
-	height: 300px;
-	display: block;
-	margin: 0 auto;
-	path {
-		fill: $primary;
-		animation-duration: $soccerBall1-speed;
-		animation-name: soccerBall1-animation;
-		animation-iteration-count: infinite;
-		@for $i from 1 through 8 {
-			&:nth-child(#{$i}) {
-				animation-delay: $soccerBall1-speed/8 * $i
-			}
-		}
-	}
-}
-@keyframes soccerBall1-animation {
-	0%     { opacity: .1; }
-	30%    { opacity: .8; }
-	100%   { opacity: .1; }
-}
-
+*/
 </style>

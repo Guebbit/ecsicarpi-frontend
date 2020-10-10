@@ -1,59 +1,57 @@
 {
+	"months": [
+		"Gennaio",
+		"Febbraio",
+		"Marzo",
+		"Aprile",
+		"Maggio",
+		"Giugno",
+		"Luglio",
+		"Agosto",
+		"Settembre",
+		"Ottobre",
+		"Novembre",
+		"Dicembre"
+	],
+	"days": [
+		"Domenica",
+		"Lunedì",
+		"Martedì",
+		"Mercoledì",
+		"Giovedì",
+		"Venerdì",
+		"Sabato"
+	],
 	"meta": {
-		"title": "Rogheneach - Fantasy Medievale Storico",
-		"description": "Rogheneach è un mondo fantasy in chiave storica. Federico I detto Barbarossa è un Gallipode che invade l'Italia con un esercito di draghi...",
+		"title": "E-CSI E-Sport",
+		"description": "Il CSI scende in campo nel mondo E-Sport. Tornei online di vari videogames e piattaforme. Playstation, Xbox, Switch e Computer",
 		"og": {
-			"og:image": "https://rogheneach.com/assets/images/generic/medium/preview.jpg",
-			"og:image:alt": "copertina volume 2 Rogheneach atteso seguito",
-			"og:image:width": "600",
-			"og:image:height": "337",
-			"og:image:type": "image/jpg",
-			"twitter:image": "https://rogheneach.com/assets/images/generic/medium/preview.jpg",
-			"twitter:title": "Rogheneach - Fantasy Medievale Storico",
-			"twitter:description": "Rogheneach è un mondo fantasy in chiave storica. Federico I detto Barbarossa è un Gallipode che invade l'Italia con un esercito di draghi...",
+			"og:image": "https://ecsicarpi.it/images/logotipo-ecsi.png",
+			"og:image:alt": "esport csi carpi logo",
+			"og:image:width": "416",
+			"og:image:height": "440",
+			"og:image:type": "image/png",
+			"twitter:image": "https://ecsicarpi.it/images/logotipo-ecsi.png",
+			"twitter:title": "E-CSI E-Sport",
+			"twitter:description": "Il CSI scende in campo nel mondo E-Sport. Tornei online di vari videogames e piattaforme. Playstation, Xbox, Switch e Computer",
 			"twitter:card": "summary"
 		}
 	},
-	"generic": {
-		"author": {
-			"username": "Mychron",
-			"name": "Myriam Savini",
-			"email": "myriam.savini@gmail.com",
-			"bio": [
-				"Disegnatrice da bambina, fumettista da adulta, sognatrice da sempre."
-			]
-		},
-		"follow-me": "Seguimi per vedere altri fumetti, illustrazioni e tutorial"
-	},
-	"social": {
-		"website": {
-			"url": "https://mychron.it/",
-			"alt": "website mychron rogheneach",
-			"text": "Website"
-		},
-		"patreon": {
-			"url": "https://www.patreon.com/mychrontales",
-			"alt": "patreon mychron rogheneach",
-			"text": "Patreon"
-		},
-		"facebook": {
-			"url": "https://www.facebook.com/mychronmyriamsavini/",
-			"alt": "facebook mychron rogheneach",
-			"text": "Facebook"
-		},
-		"tumblr": {
-			"url": "https://myriamsaviniart.tumblr.com/",
-			"alt": "tumblr mychron rogheneach",
-			"text": "Tumblr"
+	"info": {
+		"email": "esport@csicarpi.it",
+		"tel": "331xxxxxxx",
+		"social": {
+			"facebook": {
+				"url": "https://www.facebook.com/carpiecsi",
+				"alt": "facebook e-csi csi carpi",
+				"text": "Facebook"
+			},
+			"instagram": {
+				"url": "https://www.instagram.com/e_csi_carpi/",
+				"alt": "instagram e-csi csi carpi esport",
+				"text": "Instagram"
+			}
 		}
 	},
-
-	"authorWho" : {
-		"background-meta-alt": "Myriam Savini Mychron, artworks and fanarts",
-		"background-meta-title": "Myriam Savini Mychron, artworks and fanarts"
-	},
-
-	"makingOf": {
-		"background-meta-title": "Speedpaint Berenice. Rogheneach fantasy"
-	}
+	"subscribe": "Iscriviti"
 }

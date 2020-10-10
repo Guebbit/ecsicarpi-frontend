@@ -1,0 +1,9 @@
+$colors: () !default;
+$colors: map-merge($colors,(
+	"flatrica-green": (
+		"base": #06A763,
+	),
+	"manga-red": (
+		"base": #d41816,
+	),
+));

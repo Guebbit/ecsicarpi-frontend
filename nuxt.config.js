@@ -6,7 +6,8 @@ export default {
 	target: 'static',
 
 	env: {
-		baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+		baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+		apiUrl: process.env.API_URL || 'localhost'
 	},
 
 	// Global page headers (https://go.nuxtjs.dev/config-head)
@@ -59,8 +60,7 @@ export default {
 		'@nuxtjs/svg',
 		//'@bazzite/nuxt-optimized-images',	// https://github.com/bazzite/nuxt-optimized-images
 		['nuxt-i18n', {						// https://github.com/nuxt-community/nuxt-i18n
-			seo: false,	// done manually on component
-			baseUrl: 'https://rogheneach.com',
+			baseUrl: 'https://ecsicarpi.it',
 			locales: [
 				{
 					code: 'it',
@@ -99,7 +99,7 @@ export default {
 			return axios.get('https://mangabeats.api.guebbit.com/events').then(data => {
 				return data.data.map(event => {
 					return {
-						route: '/events/' + event.id,
+						route: '/events/' + event.uri,
 						payload: event
 					}
 				})

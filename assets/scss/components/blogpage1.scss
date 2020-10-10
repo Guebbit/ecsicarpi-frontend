@@ -1,0 +1,126 @@
+$blogpage1-distance: 60px !default;
+
+.blogpage1-body{
+	background-color: lighten($primary-color,50%);
+	@include prefix((
+		background-image: (repeating-linear-gradient(45deg,
+									transparent,
+									transparent 50px,
+									rgba(color("shades","white"),.5) 50px,
+									rgba(color("shades","white"),.5) 100px
+								)
+							)
+	), webkit, true);
+}
+
+.blogpage1{
+	.blog-panel{
+	    color:color("grey","darken-4");
+		.alertCard1,
+		.blog-section{
+			margin: $blogpage1-distance auto;
+		}
+		.blog-section {
+			.blog-title{
+			    margin-left:-24px;
+			    padding-left:24px;
+				border-left: 7px solid $primary-color;
+			}
+			p,
+			ul{
+				border: 0;
+				color: inherit;
+				font-family: inherit;
+				font-style: inherit;
+				font-weight: inherit;
+				font-size: 1.3em;
+				margin: 0 0 1em 0;
+				outline: 0;
+				padding: 0 5%;
+				vertical-align: baseline;
+				line-height: 1.6;
+				a{
+					font-weight: 500;
+					color: darken($primary-color, 7%) !important;
+				}
+				&.simpleList1{
+					& > li{
+						& > span,
+						& > a{
+							i,
+							&:before{
+								font-size: 2em;
+							}
+						}
+					}
+					&.some-margin{
+						& > li{
+							margin-bottom: 10px;
+						}
+					}
+				}
+			}
+			.quote-2 {
+				margin: $blogpage1-distance auto;
+				border-color: $secondary-color;
+				cite,
+				&:before,
+				&:after {
+					color: $secondary-color;
+				}
+				&.v4{
+					background-color: rgba($secondary-color, 0.2);
+				}
+			}
+			&.active,
+			&:hover{
+				.blog-title{
+					border-width: 20px;
+					border-color: $secondary-color;
+					@include prefix((
+						transition: all 1s
+					), webkit);
+				}
+				.quote-2{
+					&:before,
+					&:after {
+						animation: pay-attention 1s infinite;
+					}
+				}
+			}
+		}
+		.image-interrupt{
+			height:250px;
+			margin-left: -24px;
+			margin-right: -24px;
+			overflow: hidden;
+			@include prefix((
+				width: calc(100% + 48px)
+			), webkit);
+			img{
+				width: 100%;
+			}
+		}
+	}
+	@include builder_media("small") {
+		.blog-panel{
+			.blog-section {
+				p,
+				ul{
+					padding: 0;
+					margin: 0 0 1em 0;
+				}
+			}
+		}
+	}
+}
+@include keyframes(pay-attention) {
+	0%  { transform: translate(0px, 0px) rotate(0deg); }
+	50% { transform: translate(0px, 0px) rotate(0deg); }
+	70% {
+		transform: translate(0px, 0px) rotate(-5deg);
+	}
+	90% {
+		transform: translate(0px, 0px) rotate(5deg);
+	}
+}

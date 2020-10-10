@@ -1,0 +1,99 @@
+$iconButton1-speed: 0.3s !default;
+$iconButton1-background: transparent !default;
+$iconButton1-color: $primary-color !default;
+$iconButton1-border: $iconButton1-color !default;
+$iconButton1-hover-background: $iconButton1-color !default;
+$iconButton1-hover-color: $iconButton1-color !default;
+$iconButton1-hover-border: $iconButton1-color !default;
+
+
+.iconButton1 {
+	position: relative;
+	overflow: hidden;
+	height: auto;
+	border: 2px solid $iconButton1-border;
+	border-radius: 2px;
+	color: $iconButton1-color;
+	background-color: $iconButton1-background;
+	padding: 24px 60px 24px 16px;
+
+	line-height: 1;
+	text-decoration: none;
+	text-align: center;
+	letter-spacing: .5px;
+	transition: background-color .2s ease-out;
+	text-transform: uppercase;
+	vertical-align: middle;
+	-webkit-tap-highlight-color: transparent;
+	span{
+		&:nth-child(1){
+			padding: 0 26px;
+			position: relative;
+			right: 0;
+			display: block;
+			@include prefix((
+				transition: right $iconButton1-speed ease
+			), webkit);
+		}
+		&:nth-child(2){
+			border-left: 1px solid $iconButton1-border;
+			position: absolute;
+			right: 0;
+			top: 50%;
+			width: 58px;
+			height: 70%;
+			@include prefix((
+				transition: (
+								font-size $iconButton1-speed ease,
+								transform $iconButton1-speed ease,
+								width $iconButton1-speed ease
+							),
+				transform: translateY(-50%)
+			), webkit);
+			& > * {
+				position: relative;
+				top: 50%;
+				@include prefix((
+					transition: (font-size $iconButton1-speed ease),
+					transform: translateY(-50%)
+				), webkit);
+			}
+		}
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		background-color: $iconButton1-hover-background;
+		opacity: 0;
+		transition: opacity $iconButton1-speed ease;
+	}
+	&.active {
+		color: $iconButton1-hover-color;
+		span{
+			&:nth-child(1){
+				right: 100%;
+			}
+			&:nth-child(2){
+				border-left: 0;
+				width: 100%;
+				.icon,
+				svg,
+				i{
+					font-size: 3em;
+				}
+			}
+		}
+		&:after {
+			opacity: .2;
+		}
+	}
+	&.with-hover{
+		&:hover{
+			@extend .iconButton1.active;
+		}
+	}
+}

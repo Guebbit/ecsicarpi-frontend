@@ -1,0 +1,131 @@
+$permittedColorType: (
+	"lighten-5",
+	"lighten-4",
+	"lighten-3",
+	"lighten-2",
+	"lighten-1",
+	"darken-1",
+	"darken-2",
+	"darken-3",
+	"darken-4",
+	"darken-5",
+	"accent-1",
+	"accent-2",
+	"accent-3",
+	"accent-4",
+	"accent-5"
+);
+
+@each $color_name, $color in $colors {
+	@each $color_type, $color_value in $color {
+
+		// --------------- BASIC COLORS ---------------
+		@if $color_type == "base" {
+			.#{$color_name} {
+				background-color: $color_value !important;
+			}
+			.#{$color_name}-text {
+				color: $color_value !important;
+			}
+		}
+		@if index($permittedColorType, $color_type) {
+			.#{$color_name}.#{$color_type} {
+				background-color: $color_value !important;
+			}
+			.#{$color_name}-text.text-#{$color_type} {
+				color: $color_value !important;
+			}
+		}
+
+		// --------------- GRADIENTS ---------------
+		@if $color_name == "gradient-45" {
+			.#{$color_name}.#{$color_type} {
+				background-color: $color_value !important;
+			}
+		}
+
+		// --------------- SHADES ---------------
+		@if $color_name == "shades" {
+			.#{$color_type} {
+				background-color: $color_value !important;
+			}
+			.#{$color_type}-text {
+				color: $color_value !important;
+			}
+		}
+
+		// --------------- SOCIAL ---------------
+		@if $color_name == "social" {
+			.#{$color_type}-color {
+				background-color: $color_value !important;
+			}
+			.#{$color_type}-text {
+				color: $color_value !important;
+			}
+		}
+
+		// --------------- brands ---------------
+		@if $color_name == "brands" {
+			.#{$color_type}-color {
+				background-color: $color_value !important;
+			}
+			.#{$color_type}-text {
+				color: $color_value !important;
+			}
+		}
+	}
+}
+
+//fallback per il testo
+.instagram-text{
+	color: $instagram-fallback !important;
+}
+
+
+
+
+// primary and secondary colors
+.primary-color{
+	// primary color
+	background-color: $primary-color !important;
+	&.darken{
+		background-color: darken($primary-color,4%) !important;
+	}
+	&.lighten{
+		background-color: lighten($primary-color,7%) !important;
+	}
+	&-text{
+		// primary color
+		color: $primary-color !important;
+		&.darken{
+			color: darken($primary-color,4%) !important;
+		}
+		&.lighten{
+			color: lighten($primary-color,7%) !important;
+		}
+	}
+}
+.secondary-color{
+	// primary color
+	background-color: $secondary-color !important;
+	&.darken{
+		background-color: darken($secondary-color,4%) !important;
+	}
+	&.lighten{
+		background-color: lighten($secondary-color,7%) !important;
+	}
+	&-text{
+		// primary color
+		color: $secondary-color !important;
+		&.darken{
+			color: darken($secondary-color,4%) !important;
+		}
+		&.lighten{
+			color: lighten($secondary-color,7%) !important;
+		}
+	}
+}
+
+.transparent{
+	background: transparent !important;
+}

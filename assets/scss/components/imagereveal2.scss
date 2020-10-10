@@ -1,0 +1,119 @@
+
+$imageReveal2-speed: 1s !default;
+$imageReveal2-blur: 20px !default;
+$imageReveal2-scale: 0.2 !default;
+
+%advancingMoon1,
+.advancingMoon1{
+	opacity: 0.5;
+	@include prefix((
+		transform: translate(-10%,0) scale(1-$imageReveal2-scale*0.5),
+		filter: blur($imageReveal2-blur)
+	), webkit);
+	&.to-left{
+		@include prefix((
+			transform: translate(10%,0) scale(1-$imageReveal2-scale*0.5)
+		), webkit);
+	}
+	&.active,
+	&.loaded{
+		@include prefix((
+			transition: (filter $imageReveal2-speed, opacity $imageReveal2-speed*0.5, transform $imageReveal2-speed*10),
+		), webkit);
+		opacity: 1;
+		@include prefix((
+			transform: translate(0,0) scale(1) !important,
+			filter: blur(0)
+		), webkit);
+	}
+}
+
+
+%fade,
+.fade{
+	&In{
+		opacity: 0.5;
+		&.loaded{
+			@include prefix((
+				transition: opacity $imageReveal2-speed
+			), webkit);
+			opacity: 1;
+		}
+	}
+	&Out{
+		opacity: 1;
+		&.active,
+		&.loaded{
+			@include prefix((
+				transition: opacity $imageReveal2-speed
+			), webkit);
+			opacity: 0.5;
+		}
+	}
+}
+
+%size,
+.size{
+	&In{
+		@include prefix((
+			transform: scale(1-$imageReveal2-scale)
+		), webkit);
+		&.active,
+		&.loaded{
+			@include prefix((
+				transition: transform $imageReveal2-speed,
+				transform: scale(1)
+			), webkit);
+		}
+	}
+	&Out{
+		@include prefix((
+			transform: scale(1+$imageReveal2-scale)
+		), webkit);
+		&.active,
+		&.loaded{
+			@include prefix((
+				transition: transform $imageReveal2-speed,
+				transform: scale(1)
+			), webkit);
+		}
+	}
+}
+
+%blur,
+.blur{
+	&In{
+		@include prefix((
+			filter: blur($imageReveal2-blur)
+		), webkit);
+		&.active,
+		&.loaded{
+			@include prefix((
+				transition: filter $imageReveal2-speed,
+				filter: blur(0)
+			), webkit);
+		}
+		@include builder_compatibility("edge"){
+			@include prefix((
+				filter: none !important
+			), webkit);
+		}
+	}
+	&Out{
+		@include prefix((
+			filter: blur(0)
+		), webkit);
+		&.active,
+		&.loaded{
+			@include prefix((
+				transition: filter $imageReveal2-speed,
+				filter: blur($imageReveal2-blur)
+			), webkit);
+		}
+		@include builder_compatibility("edge"){
+			@include prefix((
+				filter: none !important
+			), webkit);
+		}
+	}
+}

@@ -1,0 +1,206 @@
+$simpleList1-duration: 0.4s !default;
+
+ul.simpleList1 {
+    padding: 0;
+	& > li {
+		position:relative;
+	    list-style:none;
+	    padding:0;
+	    margin: 0 0 0.7em 0;
+		line-height: 1.2;
+		& > * {
+			padding: 0.5em 0 0.5em 3em;
+		    display:block;
+		    text-decoration: none;
+		    color: inherit;
+			@include prefix((
+				transition: all $simpleList1-duration*0.5
+			), webkit);
+		}
+		i,
+		svg,
+		.icon,
+		& > *:before{
+			@include builder_abscenter-y;
+			speak: none;
+			left: 0.5em;
+			color: $primary-color;
+			font-size: 1.5em;
+		}
+		.icon{
+			line-height: 0;
+		}
+
+
+		//sublist
+		ul.simpleList1{
+			position: relative;
+			z-index: 1;
+			margin-left: -1.5em;
+			margin-top: 0;
+			margin-bottom: 0;
+			&:after{
+				content: "";
+				position: absolute;
+				top:0;
+				left:0;
+				height: 100%;
+				width: 4px;
+				margin-left: -2px;
+				background: rgba($primary-color,0.5);
+				z-index: -1;
+			}
+		}
+
+
+		// -----------
+		&.list-title{
+			& > *{
+				padding: 0;
+				&:before{
+					content: none !important;
+				}
+			}
+		}
+		&.secondary{
+			i,
+			svg,
+			.icon,
+			& > *:before{
+				color: $secondary-color;
+			}
+		}
+		&.with-hover{
+			&:hover{
+				& > *{
+					background-color: rgba($primary-color,0.2);
+				}
+			}
+			&.secondary{
+				&:hover{
+					& > *{
+						background-color: rgba($secondary-color,0.2);
+					}
+				}
+			}
+		}
+		&.icon-right{
+			& > *{
+				padding: 0.5em 0 0.5em 0.5em;
+			}
+			i,
+			svg,
+			.icon,
+			& > *:before{
+				margin-left: 0.5em;
+				left: auto;
+			}
+		}
+	}
+	&.with-hover{
+		& > li{
+			&:hover{
+				& > *{
+					background-color: rgba($primary-color,0.2);
+				}
+			}
+		}
+		&.secondary > li,
+		& > li.secondary{
+			&:hover{
+				& > *{
+					background-color: rgba($secondary-color,0.2);
+				}
+			}
+		}
+	}
+	&.secondary{
+		& > li{
+			@extend .secondary;
+		}
+	}
+	&.icon-right{
+		& > li{
+			@extend .icon-right;
+		}
+	}
+	&.v2{
+		& > li{
+			i,
+			svg,
+			.icon,
+			& > *:before{
+				transform: none;
+			}
+			i,
+			svg{
+				top: 0.25em;
+			}
+			& > *:before{
+				top: 0.2em;
+			}
+		}
+	}
+	&.default{
+		& > li{
+			& > * {
+				&:before {
+					font-family: 'Material Icons';
+					content: '\E5CC';
+				}
+			}
+		}
+	}
+	&.horizontal{
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		& > li{
+			padding: 0;
+			margin: 0;
+			& > *{
+				padding: 1em 1em 1em 3em;
+			}
+		}
+		&.no-mobile{
+			@include builder_media("small") {
+				display: block;
+			}
+		}
+		&.only-mobile{
+			@include builder_media("medium-large") {
+				display: block;
+			}
+		}
+		&.enlarged{
+			justify-content: space-evenly;
+		}
+		&.center-align{
+			justify-content: center;
+		}
+		&.right-align{
+			justify-content: flex-end;
+		}
+		&.icon-right{
+			& > li{
+				& > *{
+					padding: 1em 3em 1em 1em;
+				}
+				i,
+				svg,
+				.icon,
+				& > *:before{
+					right: 0.5em;
+				}
+			}
+		}
+	}
+	&.inherit{
+		& > li {
+			font-size: inherit;
+			line-height: inherit;
+		}
+	}
+}
