@@ -7,7 +7,11 @@ export default {
 
 	env: {
 		baseUrl: process.env.BASE_URL || 'http://localhost:3000',
-		apiUrl: process.env.API_URL || 'localhost'
+		apiUrl: process.env.API_URL || 'localhost',
+		enviroment: process.env.ENVIROMENT || 'development',
+		paypal_account: process.env.PAYPAL_ACCOUNT,
+		paypal_clientid: process.env.PAYPAL_CLIENTID,
+		paypal_token: process.env.PAYPAL_TOKEN,
 	},
 
 	// Global page headers (https://go.nuxtjs.dev/config-head)

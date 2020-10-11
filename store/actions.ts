@@ -48,11 +48,11 @@ export default{
 	},
 	//TODO
 	getEventsById: async ({ dispatch } :any, id_event :string) :Promise<any> => {
-		console.log("getEventsById", id_event);
+		//TODO fare bene
 		return dispatch("getEvents");
 	},
 	getEventsByUri: async ({ dispatch } :any, uri :string) :Promise<any> => {
-		console.log("getEventsByUri", uri);
+		//TODO fare bene
 		return dispatch("getEvents");
 	},
 
@@ -84,6 +84,27 @@ export default{
 		};
 		return axios.put(process.env.apiUrl+'events/3', toFormData(eventData)).then(data => {
 			console.log("PUTTTTTTTTTTTTT", data.data);
+			return data;
+		})
+	},
+
+
+
+
+
+	addSubscription: async ({} :any,  [event_id, paypal_id, create_time, email, username, city] :string[] ) :Promise<any> => {
+		const postRequest :any = toFormData({
+			event_id,
+			paypal_id,
+			create_time,
+			email,
+			username,
+			city,
+		});
+		alert("REGISTRATO!" + username + " con mail " + email);
+		return;
+		return axios.post(process.env.apiUrl+'subscription', postRequest).then(data => {
+			console.log("POSTTTTTTTTTTTTT", data.data);
 			return data;
 		})
 	},

@@ -5,8 +5,9 @@
 		:datetime="startTimestamp"
 		:date-timestamp="start"
 	>
-		<h4 class="count-title page-subtitle">
+		<h4 v-if="startTimestamp !== endTimestamp" class="count-title page-subtitle">
 			{{ $t("days")[startDayName] }} <b class="text-secondary">{{ startDay }}</b>
+			<big><b>{{ $t("months")[startMonth] }}</b></big>
 			<font-awesome-icon
 				class="text-primary large-screen"
 				:icon="['fas', 'long-arrow-alt-right']"
@@ -16,6 +17,10 @@
 				:icon="['fas', 'long-arrow-alt-down']"
 			/>
 			{{ $t("days")[endDayName] }} <b class="text-secondary">{{ endDay }}</b>
+			<big><b>{{ $t("months")[endMonth] }}</b></big>
+		</h4>
+		<h4 v-else class="count-title page-subtitle">
+			{{ $t("days")[startDayName] }} <b class="text-secondary">{{ startDay }}</b>
 			<br />
 			<big><b class="text-secondary">{{ $t("months")[startMonth] }}</b></big>
 		</h4>
@@ -118,10 +123,7 @@ const Component = Vue.extend({
 			return false;
 		var timerObject :HTMLElement = document.getElementById("depletion")!;
 		var timerChildren={
-			"years": timerObject.querySelector(".date-years .timer"),
-			"months": timerObject.querySelector(".date-months .timer"),
-			"weeks": timerObject.querySelector(".date-weeks .timer"),
-			"days": timerObject.querySelector(".date-days .timer"),
+			"total_days": timerObject.querySelector(".date-days .timer"),
 			"hours": timerObject.querySelector(".date-hours .timer"),
 			"minutes": timerObject.querySelector(".date-minutes .timer"),
 			"seconds": timerObject.querySelector(".date-seconds .timer"),
@@ -164,10 +166,10 @@ export default Component;
 		text-shadow: 0.03em 2px rgba($secondary-color,0.8);
 	}
 	.count-title{
-		margin-bottom: 2em;
+		margin-bottom: 1em;
 		font-weight: 700;
 		padding-top: 0.5em;
-		font-size: 2em;
+		font-size: 3em;
 		text-align: center;
 		.mobile-screen{
 			display: block;

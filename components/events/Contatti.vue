@@ -16,7 +16,7 @@
 			<p class="page-description">
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 			</p>
-			<div class="d-flex justify-content-center">
+			<div class="d-flex justify-content-center flex-wrap">
 				<b-button
 					variant="outline-secondary"
 					class="contact-button d-inline-flex justify-content-center align-items-center"

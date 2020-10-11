@@ -28,7 +28,7 @@ $colorButton1-background-4: #3CF0C5;
 	line-height: $colorButton1-height;
 	text-align: center;
 	margin: 0 auto;
-	color: rgba($colorButton1-color,0.9);
+	color: rgba($colorButton1-color,0.9) !important;
 	border-radius: $colorButton1-border-radius;
 	background: linear-gradient($colorButton1-rotation, $colorButton1-background-1, $colorButton1-background-2, $colorButton1-background-3, $colorButton1-background-4);
 	background-size: 600%;
@@ -46,6 +46,12 @@ $colorButton1-background-4: #3CF0C5;
 		z-index: -1;
 		filter: blur(30px);
 		opacity: 0.8;
+	}
+	&:hover{
+		animation-duration: $colorButton1-speed/4;
+		&:after{
+			animation-duration: $colorButton1-speed/4;
+		}
 	}
 }
 

@@ -42,6 +42,18 @@ const Component = Vue.extend({
 		FontAwesomeIcon,
 	},
 	props: {
+		title: {
+			type: String,
+			default: () => {
+				return '';
+			}
+		} as PropOptions<string>,
+		text: {
+			type: String,
+			default: () => {
+				return '';
+			}
+		} as PropOptions<string>,
 		arrayUrls: {
 			type: Array,
 			default: () => {

@@ -1,4 +1,13 @@
 {
+	"days": [
+		"Domenica",
+		"Lunedì",
+		"Martedì",
+		"Mercoledì",
+		"Giovedì",
+		"Venerdì",
+		"Sabato"
+	],
 	"months": [
 		"Gennaio",
 		"Febbraio",
@@ -12,15 +21,6 @@
 		"Ottobre",
 		"Novembre",
 		"Dicembre"
-	],
-	"days": [
-		"Domenica",
-		"Lunedì",
-		"Martedì",
-		"Mercoledì",
-		"Giovedì",
-		"Venerdì",
-		"Sabato"
 	],
 	"meta": {
 		"title": "E-CSI E-Sport",
@@ -53,5 +53,23 @@
 			}
 		}
 	},
-	"subscribe": "Iscriviti"
+	"subscribe": "Iscriviti",
+	"event": "Evento | Eventi",
+	"pages": {
+		"event-details": {
+			"subscription-title": "Iscrizione {name}",
+			"subscription-text": "Iscrizione all'evento E-Sport {name}",
+			"subscription-form-email-label": "Indirizzo email:",
+			"subscription-form-email-description": "Necessario per poterti contattare",
+			"subscription-form-email-placeholder": "",
+			"subscription-form-username-label": "Inserisci il tuo nickname in game",
+			"subscription-form-username-description": "Necessario per poter giocare",
+			"subscription-form-username-placeholder": "",
+			"subscription-form-city-label": "In che città abiti?",
+			"subscription-form-city-description": "Facoltativo, per capire facilitare future comunicazioni con il CSI",
+			"subscription-form-city-placeholder": "",
+			"subscription-form-success-title": "Iscrizione completata",
+			"subscription-form-success-text": "Ti ringraziamo {user}, ti invieremo presto una mail all'indirizzo {email} con il link Battlefy per partecipare al torneo"
+		}
+	}
 }

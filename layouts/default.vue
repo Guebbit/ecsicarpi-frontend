@@ -105,7 +105,11 @@ const Component = Vue.extend({
 					href: '/images/favicon/safari-pinned-tab.svg'
 				},
 			],
-			script: [],
+			script: [{
+				//TODO andrebbe solo in _uri.vue
+				type: "text/javascript",
+				src: 'https://www.paypal.com/sdk/js?client-id='+process.env.paypal_clientid+'&currency=EUR&disable-funding=sofort,mybank'
+			}],
 		}
 	},
 	components: {
@@ -130,6 +134,7 @@ export default Component;
 @import '@/node_modules/bootstrap-vue/src/index.scss';
 @import '@/assets/scss/global';
 
+@import '@/assets/scss/components/highlight1';
 @import '@/assets/scss/components/imagereveal2';
 @import '@/assets/scss/components/heropanel2';
 @import '@/assets/scss/components/simplelist1';
@@ -140,6 +145,8 @@ export default Component;
 @import '../../../archives/code/collabpanel3/collabpanel3';
 @import '../../../archives/code/simplefooter1/simplefooter1';
 */
+
+// https://material-components.github.io/material-components-web-catalog/#/component/ripple
 
 section{
 	min-height: 90vh;

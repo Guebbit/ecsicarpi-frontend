@@ -11,24 +11,43 @@
 			:subtitle="event.subtitle"
 			:cover="coverGallery.length > 0 ? coverGallery[0] : null"
 		>
-		<div class="colorButton1 call-to-action-wrapper">
+		<b-link href="#subscription" class="cta-button colorButton1 call-to-action-wrapper">
 			{{ $t("subscribe") }}!
-		</div>
+		</b-link>
 
 		</hero-header>
 
-		<div class="container hashtag-wrapper d-flex justify-content-center align-items-center">
+		<section class="first-section container d-flex justify-content-center align-items-center">
 			<div class="w-100">
 				<section-timer
 					v-if="comingsoon"
 					:start="event.data_start"
 					:end="event.data_end"
 				/>
-				<div class="d-flex justify-content-around flex-wrap">
+				<div class="hashtag-wrapper d-flex justify-content-around flex-wrap">
 					<a href="#todo" v-for="hashtag in event.array_hashtags">{{ hashtag }}</a>
 				</div>
+				<div class="d-flex justify-content-center">
+					<div class="platform-card" v-for="platform in event.platforms">
+						<img v-if="platform.media.thumbnail"
+							class="img-fluid"
+							:src="platform.media.thumb100"
+							:data-src="platform.media.thumb800"
+							:title="platform.title ? platform.title : platform.name"
+							:alt="platform.alt"
+						/>
+						<img v-else
+							class="img-fluid"
+							:src="platform.media.thumb800"
+							:title="platform.title ? platform.title : platform.name"
+							:alt="platform.alt"
+						/>
+						<p class="page-description text-center mt-4"><b class="highlight1 text-white">{{ platform.name }}</b></p>
+					</div>
+				</div>
 			</div>
-		</div>
+		</section>
+
 
 		<section class="info-panels">
 			<info-panel
@@ -46,19 +65,57 @@
 			/>
 		</section>
 
+		<section-paywall-subscription
+			v-if="event.paywall"
+			:event_id = "event.id"
+			:title = "$t('pages.event-details.subscription-title', { name: event.title })"
+			:text = "$t('pages.event-details.subscription-text', { name: event.title })"
+			:price="event.paywall"
+		/>
+		<section-free-subscription
+			v-else
+			:event_id = "event.id"
+			:title = "$t('pages.event-details.subscription-title', { name: event.title })"
+			:text = "$t('pages.event-details.subscription-text', { name: event.title })"
+			:arrayUrls="event.array_urls"
+		/>
+
+
 
 		<section-contacts
 
 		/>
 
-		<section-paywall-subscription
-			v-if="event.paywall"
-			:price="event.paywall"
+		<section-players
+
 		/>
-		<section-free-subscription
-			v-else
-			:arrayUrls="event.array_urls"
-		/>
+
+
+		<section id="regolamento" class="blogpage1">
+			<article
+				v-if="event.WYSIWYG_pre && event.WYSIWYG_pre.length > 0"
+				class="blog-panel container"
+				v-html="event.WYSIWYG_pre"
+			/>
+			<article
+				v-if="event.WYSIWYG_post && event.WYSIWYG_post.length > 0"
+				class="blog-panel container"
+				v-html="event.WYSIWYG_post"
+			/>
+			<article
+				v-if="event.WYSIWYG_rules && event.WYSIWYG_rules.length > 0"
+				class="blog-panel container"
+				v-html="event.WYSIWYG_rules"
+			/>
+			<article
+				v-if="event.WYSIWYG_gamerules && event.WYSIWYG_gamerules.length > 0"
+				class="blog-panel container"
+				v-html="event.WYSIWYG_gamerules"
+			/>
+		</section>
+
+
+
 
 		<section-collab
 			:sponsors = "sponsorList"
@@ -69,7 +126,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
 import { eventMap, mediaMap, partnerMap } from '@/interfaces';
 
 import axios from 'axios';
@@ -80,6 +137,7 @@ import infoPanel from '@/components/events/PrimaryInfo.vue';
 import sectionContacts from '@/components/events/Contatti.vue';
 import sectionFreeSubscription from '@/components/events/IscrizioneGratuita.vue';
 import sectionPaywallSubscription from '@/components/events/IscrizionePagamento.vue';
+import sectionPlayers from '@/components/events/Players.vue';
 import sectionCollab from '@/components/events/Collab.vue';
 
 const Component = Vue.extend({
@@ -107,6 +165,7 @@ const Component = Vue.extend({
 		sectionContacts,
 		sectionFreeSubscription,
 		sectionPaywallSubscription,
+		sectionPlayers,
 		sectionCollab,
 	},
 	computed: {
@@ -123,9 +182,10 @@ const Component = Vue.extend({
 			if(!this.event)
 				return [];
 			//@ts-ignore
-			return this.$store.getters.getEventGallery(this.event.id);
+			return Object.values(this.$store.getters.getEventGallery(this.event.id));
 		},
 		coverGallery() :mediaMap[] {
+			//@ts-ignore
 			return this.mediaGallery.filter(({ role } :mediaMap) => {
 				return role === 'cover';
 			});
@@ -152,7 +212,7 @@ const Component = Vue.extend({
 			if(!this.event)
 				return [];
 			//@ts-ignore
-			sponsorList = this.event.partners.filter(({ role } :partnerMap) => {
+			sponsorList = Object.values(this.event.partners).filter(({ role } :partnerMap) => {
 				return role === 'sponsor';
 			});
 			sponsorList.unshift({
@@ -176,7 +236,7 @@ const Component = Vue.extend({
 			if(!this.event)
 				return [];
 			//@ts-ignore
-			return this.event.partners.filter(({ role } :partnerMap) => {
+			return Object.values(this.event.partners).filter(({ role } :partnerMap) => {
 				return role === 'collab';
 			});
 		},
@@ -185,12 +245,15 @@ const Component = Vue.extend({
 
 
 		ended() :boolean {
+			//@ts-ignore
 			return Date.now() > this.endTimestamp;
 		},
 		active() :boolean {
+			//@ts-ignore
 			return this.startTimestamp > Date.now() && Date.now() < this.endTimestamp;
 		},
 		comingsoon() :boolean {
+			//@ts-ignore
 			return this.startTimestamp < Date.now();
 		},
 	},
@@ -238,37 +301,52 @@ export default Component;
 			text-transform: uppercase;
 		}
 	}
-	.hashtag-wrapper{
-		padding-top: 60px;
-		padding-bottom: 120px;
-		text-align: center;
-		a{
-			font-size: 3em;
-			color: inherit;
-			text-decoration: none;
-			&:before{
-				content: "#";
-				color: $secondary-color;
-				font-size: 1.5em;
-				margin-right: 0.1em;
-			    vertical-align: sub;
-			}
-			&:hover{
-				color: $primary-color;
-				transition: color 0.2s;
-			}
-			&:nth-child(odd){
+	.cta-button{
+		display: block;
+		text-decoration: none !important;
+	}
+	.first-section{
+		.hashtag-wrapper{
+			padding-bottom: 60px;
+			text-align: center;
+			a{
+				font-size: 3em;
+				color: inherit;
+				text-decoration: none;
 				&:before{
-					color: $primary-color;
+					content: "#";
+					color: $secondary-color;
+					font-size: 1.5em;
+					margin-right: 0.1em;
+				    vertical-align: sub;
 				}
 				&:hover{
-					color: $secondary-color;
+					color: $primary-color;
 					transition: color 0.2s;
+				}
+				&:nth-child(odd){
+					&:before{
+						color: $primary-color;
+					}
+					&:hover{
+						color: $secondary-color;
+						transition: color 0.2s;
+					}
 				}
 			}
 		}
+		.platform-card{
+			max-width: 300px;
+			margin: 24px;
+		}
 	}
+
+
 	.info-panels{
+		.cardPanel4{
+			margin-top: 60px;
+			margin-bottom: 60px;
+		}
 		.card-title{
 			font-size: 2.5em;
 			& + p{
@@ -276,6 +354,14 @@ export default Component;
 			}
 		}
 	}
+
+	.subscription-section{
+		.ballTitle{
+			text-transform: uppercase;
+		}
+		//.paypal-wrapper{}
+	}
+
 	//TODO fare una versione generica per stylare le WYSIWYG
 	.blog-section{
 		ul{
