@@ -1,7 +1,7 @@
 <template>
 	<b-navbar toggleable="lg" type="dark" variant="primary" sticky>
 		<b-navbar-brand href="/">
-			<img :src="$t('meta.og.og:image')" :alt="$t('meta.og.og:image:alt')">
+			<img src="/images/logo-ecsi-mono.png" :alt="$t('meta.og.og:image:alt')">
 		</b-navbar-brand>
 		<b-navbar-toggle target="main-nav-collapse"></b-navbar-toggle>
 		<b-collapse id="main-nav-collapse" is-nav>
