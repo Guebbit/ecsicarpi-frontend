@@ -1,0 +1,87 @@
+$cssArrow1-width: 28px !default;
+$cssArrow1-distance: 100px !default;
+$cssArrow1-speed: 3s !default;
+
+.cssArrow1 {
+	position: relative;
+	width: $cssArrow1-width;
+	height: $cssArrow1-width;
+	& > div{
+		position: absolute;
+		width: $cssArrow1-width;
+		height: 8px;
+		opacity: 0;
+		@include prefix((
+			transform: scale3d(0.5, 0.5, 0.5),
+			animation: move $cssArrow1-speed ease-out infinite
+		), webkit);
+		&:before,
+		&:after {
+			content: ' ';
+			position: absolute;
+			top: 0;
+			height: 100%;
+			width: 51%;
+			background: $primary-color;
+		}
+		&:before {
+			left: 0;
+			@include prefix((
+				transform: skew(0deg, 30deg)
+			), webkit);
+		}
+		&:after {
+			right: 0;
+			width: 50%;
+			@include prefix((
+				transform: skew(0deg, -30deg)
+			), webkit);
+		}
+		&:first-child {
+			@include prefix((
+				animation: move $cssArrow1-speed ease-out $cssArrow1-speed*0.3 infinite
+			), webkit);
+		}
+		&:nth-child(2) {
+			@include prefix((
+				animation: move $cssArrow1-speed ease-out $cssArrow1-speed*0.6 infinite
+			), webkit);
+		}
+	}
+	.text {
+		@include builder_abscenter-xy;
+		display: block;
+		margin-top: -$cssArrow1-width;
+		color: $primary-color;
+		text-transform: uppercase;
+		white-space: nowrap;
+		opacity: .25;
+		@include prefix((
+			animation: pulse $cssArrow1-speed*0.6 linear alternate infinite
+		), webkit);
+	}
+}
+
+
+@include keyframes(move) {
+	25% {
+		opacity: 1;
+	}
+	33% {
+		opacity: 1;
+		transform: translateY(30px);
+	}
+	67% {
+		opacity: 1;
+		transform: translateY(40px);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+	}
+}
+@include keyframes(pulse) {
+	to {
+		opacity: 1;
+	}
+}

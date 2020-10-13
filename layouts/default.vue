@@ -119,6 +119,10 @@ const Component = Vue.extend({
 	mounted(){
 		lazyload();
 		activator();
+
+		setTimeout(() => {
+			console.log(Object.assign([],this.$store.getters.debug));
+		}, 5000);
 	},
 });
 
@@ -163,23 +167,25 @@ section{
 }
 .page-title{
 	text-transform: uppercase;
-	span{
-		background: rgba($primary,0.9);
-	}
 	@include media-breakpoint-up(lg) {
 		font-size: 2.5em;
 	}
 }
 .page-subtitle{
-	span{
-		background: rgba($secondary,0.9);
-	}
 	@include media-breakpoint-up(lg) {
 		font-size: 1.5em;
 	}
 }
 .page-description{
 	font-size: 1.2em;
+}
+
+.socialButton1{
+	&.observer-activate-once{
+		&.active{
+			font-size: 12em;
+		}
+	}
 }
 
 

@@ -1,7 +1,7 @@
 <template>
 	<div class="ballTitle">
 		<span class="label">
-			<span class="CSShake1 shake-slow">{{ title }}</span>
+			<span class="CSShake1 shake-slow" :class="{ 'active': active}">{{ title }}</span>
 		</span>
 		<soccer-ball class="soccerBall1" />
 	</div>
@@ -21,6 +21,12 @@ const Component = Vue.extend({
 		title: {
 			type: String,
 			required: true,
+		},
+		active: {
+			type: Boolean,
+			default: () => {
+				return false;
+			}
 		},
 	},
 });

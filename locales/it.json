@@ -22,6 +22,9 @@
 		"Novembre",
 		"Dicembre"
 	],
+	"event": "Evento | Eventi",
+	"username": "Nickname",
+	"city": "Città",
 	"meta": {
 		"title": "E-CSI E-Sport",
 		"description": "Il CSI scende in campo nel mondo E-Sport. Tornei online di vari videogames e piattaforme. Playstation, Xbox, Switch e Computer",
@@ -53,10 +56,9 @@
 			}
 		}
 	},
-	"subscribe": "Iscriviti",
-	"event": "Evento | Eventi",
 	"pages": {
 		"event-details": {
+			"subscription-event-ended-title": "Torneo concluso",
 			"subscription-title": "Iscrizione {name}",
 			"subscription-text": "Iscrizione all'evento E-Sport {name}",
 			"subscription-form-email-label": "Indirizzo email:",
@@ -69,7 +71,15 @@
 			"subscription-form-city-description": "Facoltativo, per capire facilitare future comunicazioni con il CSI",
 			"subscription-form-city-placeholder": "",
 			"subscription-form-success-title": "Iscrizione completata",
-			"subscription-form-success-text": "Ti ringraziamo {user}, ti invieremo presto una mail all'indirizzo {email} con il link Battlefy per partecipare al torneo"
+			"subscription-form-success-text": "Ti ringraziamo {user}, eccoti i link per partecipare al torneo. Solo il nick che hai scelto verrà abilitato. <br> Ti invieremo anche una mail all'indirizzo {email} con il link Battlefy per partecipare al torneo. <br> In caso di problemi non esitare a <b><a href=\"#contatti\">CONTATTARCI</a></b>",
+			"subscription-form-success-button": "Clicca per partecipare",
+			"subscription-free-text": "L'iscrizione è gratuita, clicca sul link in basso per andare su <b>Battlefy</b>, piattaforma comoda ed intuitiva per la gestione del torneo e dei giocatori. <br> Se dovessi avere dubbi, non esitare a <b><a href=\"#contatti\">CONTATTARCI</a></b>",
+			"subscription-battlefy-instructions-text": "Non sai come funziona <b class=\"text-secondary\">BATTLEFY</b>?",
+			"subscription-battlefy-instructions-button": "Guarda il video",
+			"contacts-followus-title": "Seguici",
+			"contacts-followus-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+			"contacts-links-title": "Contattaci",
+			"contacts-links-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 		}
 	}
 }

@@ -1,5 +1,5 @@
 <template>
-	<b-navbar toggleable="lg" type="dark" variant="primary">
+	<b-navbar toggleable="lg" type="dark" variant="primary" sticky>
 		<b-navbar-brand href="/">
 			<img :src="$t('meta.og.og:image')" :alt="$t('meta.og.og:image:alt')">
 		</b-navbar-brand>

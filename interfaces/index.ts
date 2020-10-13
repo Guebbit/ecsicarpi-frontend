@@ -18,7 +18,7 @@ export interface partnerMap {
 	name :string
 	url :string
 	role :string
-	media :MediaChunk
+	MediaChunk :MediaChunk
 	alt :string
 	title :string
 }
@@ -28,6 +28,22 @@ export interface eventMap {
 	[parameter :string]: any
 }
 
+export interface subscriptionMap {
+	//TODO
+	[parameter :string]: any
+}
+export interface subscriptionRequest {
+	event_id? :string
+	payment_id? :string
+	payment_type? :string
+	email? :string
+	username :string
+	city? :string
+}
+
+
+
+
 // store
 export interface stateMap {
 	//se il server sta svolgendo qualche tipo di operazione su cui è meglio non accavallarne altre finché non ha finito
@@ -36,7 +52,10 @@ export interface stateMap {
 	},
 	events: {
 		[event_id :string] :eventMap
-	}
+	},
+	subscriptions: {
+		[subscription_id :string] :subscriptionMap
+	},
 
 	//ultima volta che ho updatato dei dati:
 	lastUpdate: {
@@ -46,10 +65,12 @@ export interface stateMap {
 		event: {
 			[event_id :string]: number
 		}
+		subscriptions: number
 	}
 	// tempo minimo prima di un refresh
 	refresh: {
 		events :number
 		event :number
+		subscriptions :number
 	}
 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { eventMap } from '@/interfaces';
+import { eventMap, subscriptionRequest } from '@/interfaces';
 
 
 //TODO guebbit
@@ -57,55 +57,88 @@ export default{
 	},
 
 
-	addEvent: async ({} :any, eventData :eventMap) :Promise<any> => {
-		axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+	//TODO
+	addEvent: async ({ commit } :any, eventData :eventMap) :Promise<any> => {
 		eventData = {
 			"uri": "testttttttttttt",
-			"title": "test"
+			"title": "test",
 		};
-		return axios.post(process.env.apiUrl+'events', toFormData(eventData)).then(data => {
-			console.log("POSTTTTTTTTTTTTT", data.data);
+		return axios.post(process.env.apiUrl+'events', toFormData(eventData))
+			.then(data => {
+				console.log("addEvent OK", data.data);
+				commit("setEvent", data.data);
+				return data;
+			})
+			.catch(error => {
+				if(!error)
+					return;
+				console.log("addEvent ERROR", error.response.data.messages);
+				return error.response.data.messages;
+			})
+	},
+	//TODO
+	editEvent: async ({ commit } :any, eventData :eventMap) :Promise<any> => {
+		eventData = {
+			"id": "10",
+			"uri": "changed",
+			"title": "changedddddd",
+		};
+		return axios.post(process.env.apiUrl+'events/'+eventData.id, toFormData({...eventData, "_method": "PUT"}))
+			.then(data => {
+				console.log("editEvent OK", data.data);
+				commit("setEvent", data.data);
+				return data;
+			})
+			.catch(error => {
+				if(!error)
+					return;
+				console.log("editEvent ERROR", error.response.data.messages);
+				return error.response.data.messages;
+			})
+	},
+	//TODO
+	removeEvent: async ({ commit } :any, id :string) :Promise<any> => {
+		return axios.delete(process.env.apiUrl+'events/'+id)
+			.then(data => {
+				console.log("removeEvent OK", data.data);
+				commit("removeEvent", id); //TODO put data.data.id (and test)
+				return data;
+			})
+			.catch(error => {
+				if(!error)
+					return;
+				console.log("removeEvent ERROR", error.response.data.messages);
+				return error.response.data.messages;
+			})
+	},
+
+
+
+	getSubscriptions: async ({ commit, getters } :any, event_id :string) :Promise<any> => {
+		//se il dato è ancora nuovo, non faccio la richiesta e tengo i dati vecchi
+		/*	TODO
+		if(getters.getEventsLastupdate + getters.getEventsRefresh > Date.now())
+			return false;
+		*/
+		return axios.get(process.env.apiUrl+'subscriptions/'+event_id).then(data => {
+			for(let i :number = data.data.length; i--; )
+				commit("setSubscription", data.data[i]);
 			return data;
 		})
 	},
-
-	editEvent: async ({} :any, eventData :eventMap) :Promise<any> => {
-		axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-		eventData = {
-			"uri": "testttttttttttt",
-			"title": "test"
-		};
-		var test :any = {
-			headers: {
-				//'Content-Type': 'application/json',
-				'Content-Type': 'multipart/form-data',
-				'X-Requested-With': 'XMLHttpRequest',
-			}
-		};
-		return axios.put(process.env.apiUrl+'events/3', toFormData(eventData)).then(data => {
-			console.log("PUTTTTTTTTTTTTT", data.data);
-			return data;
-		})
-	},
-
-
-
-
-
-	addSubscription: async ({} :any,  [event_id, paypal_id, create_time, email, username, city] :string[] ) :Promise<any> => {
-		const postRequest :any = toFormData({
-			event_id,
-			paypal_id,
-			create_time,
-			email,
-			username,
-			city,
-		});
-		alert("REGISTRATO!" + username + " con mail " + email);
-		return;
-		return axios.post(process.env.apiUrl+'subscription', postRequest).then(data => {
-			console.log("POSTTTTTTTTTTTTT", data.data);
-			return data;
-		})
+	addSubscription: async ({ commit } :any,  subscriptionData: subscriptionRequest ) :Promise<any> => {
+		return axios.post(process.env.apiUrl+'subscriptions', toFormData(subscriptionData))
+			.then(data => {
+				console.log("setSubscription OK", data.data);
+				commit("setSubscription", data.data);
+				return data;
+			})
+			.catch(error => {
+				if(!error)
+					return;
+				console.log("setSubscription ERROR", error.response.data.messages);
+				return error.response.data.messages;
+			})
 	},
 };

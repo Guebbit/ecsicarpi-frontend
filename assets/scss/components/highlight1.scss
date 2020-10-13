@@ -1,39 +1,51 @@
-$highlight1-shadow: $primary-color !default;
+$highlight1-primary: $primary-color !default;
+$highlight1-secondary: $secondary-color !default;
 
-//TODO &.secondary-color
+//TODO completare (fare come highlight1) poi aggiornare su guebbit. Fare solo mixin?
 
-.highlight1{
-	background: $primary-color;
+@mixin highlight1_builder_coloronly($color, $opacity: 1) {
+	background: rgba($color, $opacity);
+	@include prefix((
+		box-shadow: (0.25em 0 0 rgba($color, $opacity),
+					0.25em*-1 0 0 rgba($color, $opacity))
+	), webkit);
+}
+
+@mixin highlight1_builder($color, $opacity: 1) {
+	@include highlight1_builder_coloronly($color, $opacity);
 	position: relative;
 	left: 0.2em;
 	padding: 0.2em 0.2em 0.2em 0;
 	line-height: 1.5;
-	@include prefix((
-		box-shadow: (0.25em 0 0 $primary-color,
-					0.25em*-1 0 0 $primary-color)
-	), webkit);
+}
+
+
+.highlight1{
+	@include highlight1_builder($highlight1-primary);
 	&.with-opacity{
-		background: rgba($highlight1-shadow,0.7);
-		@include prefix((
-			box-shadow: (0.25em 0 0 rgba($highlight1-shadow,0.7),
-						0.25em*-1 0 0 rgba($highlight1-shadow,0.7))
-		), webkit);
+		@include highlight1_builder_coloronly($highlight1-primary, 0.7);
+	}
+	&.secondary{
+		@include highlight1_builder_coloronly($highlight1-secondary);
+		&.with-opacity{
+			@include highlight1_builder_coloronly($highlight1-secondary, 0.7);
+		}
 	}
 }
 
 
 .highlight2{
-	@include builder_textshadow($highlight1-shadow,2);
+	@include builder_textshadow($highlight1-primary,2);
 	&.v2{
-		text-shadow: 0.05em 0.05em 0px rgba($highlight1-shadow,0.7);
+		text-shadow: 0.05em 0.05em 0px rgba($highlight1-primary,0.7);
 	}
 	&.v3{
-		text-shadow:1px 0px 2px $highlight1-shadow,
-					-1px 0px 2px $highlight1-shadow,
-					0px 1px 2px $highlight1-shadow,
-					0px -1px 2px $highlight1-shadow,
-					0px 0px 10px $highlight1-shadow,
-					0px 0px 5px $highlight1-shadow;
+		text-shadow:1px 0px 2px $highlight1-primary,
+					-1px 0px 2px $highlight1-primary,
+					0px 1px 2px $highlight1-primary,
+					0px -1px 2px $highlight1-primary,
+					0px 0px 10px $highlight1-primary,
+					0px 0px 5px $highlight1-primary;
 	}
 }
 
@@ -41,28 +53,28 @@ $highlight1-shadow: $primary-color !default;
 
 .highlight3{
 	@include prefix((
-		background: (linear-gradient(to right, rgba($highlight1-shadow, 0) 0%,
-												rgba($highlight1-shadow, 0.2) 15%,
-												rgba($highlight1-shadow, 0.42) 30%,
-												rgba($highlight1-shadow, 0.42) 70%,
-												rgba($highlight1-shadow, 0.2) 85%,
-												rgba($highlight1-shadow, 0) 100%))
+		background: (linear-gradient(to right, rgba($highlight1-primary, 0) 0%,
+												rgba($highlight1-primary, 0.2) 15%,
+												rgba($highlight1-primary, 0.42) 30%,
+												rgba($highlight1-primary, 0.42) 70%,
+												rgba($highlight1-primary, 0.2) 85%,
+												rgba($highlight1-primary, 0) 100%))
 	), webkit, true);
 	&.highlight-vertical{
 		@include prefix((
-			background: (linear-gradient(to bottom, rgba($highlight1-shadow, 0) 0%,
-													rgba($highlight1-shadow, 0.2) 15%,
-													rgba($highlight1-shadow, 0.42) 30%,
-													rgba($highlight1-shadow, 0.42) 70%,
-													rgba($highlight1-shadow, 0.2) 85%,
-													rgba($highlight1-shadow, 0) 100%))
+			background: (linear-gradient(to bottom, rgba($highlight1-primary, 0) 0%,
+													rgba($highlight1-primary, 0.2) 15%,
+													rgba($highlight1-primary, 0.42) 30%,
+													rgba($highlight1-primary, 0.42) 70%,
+													rgba($highlight1-primary, 0.2) 85%,
+													rgba($highlight1-primary, 0) 100%))
 		), webkit, true);
 	}
 	&.highlight-circular{
 		@include prefix((
 			background: radial-gradient(
-				rgba($highlight1-shadow,0.5),
-				rgba($highlight1-shadow,0.05) 80%
+				rgba($highlight1-primary,0.5),
+				rgba($highlight1-primary,0.05) 80%
 			)
 		), webkit, true);
 	}
@@ -79,7 +91,7 @@ $highlight1-shadow: $primary-color !default;
 		content: "";
 		width: 110%;
 		height: 120%;
-		background-color: $highlight1-shadow;
+		background-color: $highlight1-primary;
 		z-index: -1;
 		@include builder_abscenter-xy;
 		@include prefix((
@@ -106,7 +118,7 @@ $highlight1-shadow: $primary-color !default;
 		z-index: -1;
 		width: calc(100% - 8px);
 		height: 1em;
-		background-color: $highlight1-shadow;
+		background-color: $highlight1-primary;
 		&:before,
 		&:after{
 			content: "";
@@ -117,12 +129,12 @@ $highlight1-shadow: $primary-color !default;
 		&:before{
 			left: -2px;
 			border-left: 0;
-			border-right: 2px solid $highlight1-shadow;
+			border-right: 2px solid $highlight1-primary;
 		}
 		&:after{
 			right: -3px;
 			border-right: 0;
-			border-left: 3px solid $highlight1-shadow;
+			border-left: 3px solid $highlight1-primary;
 		}
 	}
 	&.with-hover{
@@ -135,7 +147,7 @@ $highlight1-shadow: $primary-color !default;
 .highlight-rect{
 	display: inline-block;
     padding: 0 9px;
-    background-image: linear-gradient(-73deg,transparent,transparent 7px, $highlight1-shadow 8px, $highlight1-shadow calc(100% - 7px), transparent calc(100% - 6px),transparent);
+    background-image: linear-gradient(-73deg,transparent,transparent 7px, $highlight1-primary 8px, $highlight1-primary calc(100% - 7px), transparent calc(100% - 6px),transparent);
     background-size: 100% 18px;
     background-repeat: no-repeat;
     background-color: transparent;

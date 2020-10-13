@@ -1,34 +1,34 @@
 <template>
 	<div class="heroPanel2 full-height">
-		<video v-if="cover && cover.media.chunkType === 'video'"
+		<video v-if="cover && cover.MediaChunk.chunkType === 'video'"
 			class="background"
 			async=""
 			autoplay=""
 			loop=""
 			muted=""
-			:poster="cover.media.thumb800"
+			:poster="cover.MediaChunk.thumb800"
 		>
-			<source :src="cover.media.url" type="video/mp4">
+			<source :src="cover.MediaChunk.url" type="video/mp4">
 		</video>
-		<template v-if="cover && cover.media.chunkType === 'image'">
-			<img v-if="cover.media.thumbnail"
+		<template v-if="cover && cover.MediaChunk.chunkType === 'image'">
+			<img v-if="cover.MediaChunk.thumbnail"
 				class="background"
-				:src="cover.media.thumb100"
-				:data-src="cover.media.url"
+				:src="cover.MediaChunk.thumb100"
+				:data-src="cover.MediaChunk.url"
 				:title="cover.title"
 				:alt="cover.alt"
 			/>
 			<img v-else
 				class="background"
-				:src="cover.media.url"
+				:src="cover.MediaChunk.url"
 				:title="cover.title"
 				:alt="cover.alt"
 			/>
 		</template>
 		<div class="full-height panel-content d-flex align-items-end">
 			<div>
-				<h1 class="page-title text-white"><span>{{ title }}</span></h1>
-				<h4 class="page-subtitle text-white"><span>{{ subtitle }}</span></h4>
+				<h1 class="page-title text-white"><span class="highlight1 with-opacity">{{ title }}</span></h1>
+				<h4 class="page-subtitle text-white"><span class="highlight1 secondary with-opacity">{{ subtitle }}</span></h4>
 				<slot />
 			</div>
 		</div>

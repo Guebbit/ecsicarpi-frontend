@@ -1,21 +1,21 @@
 <template>
-	<section class="contact-section container d-flex justify-content-center flex-column">
-		<div class="contact-info text-center">
-			<h2 class="page-title">Seguici</h2>
-			<p class="page-description">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-			</p>
-			<div class="social-wrapper d-flex justify-content-center">
-				<a v-for="(social, social_name) in $t('info.social')" :href="social.url" target="_blank" class="socialButton1" :class="social_name">
+	<section id="contatti" class="contact-section container d-flex justify-content-center flex-column">
+		<div class="contact-info text-center mb-20">
+			<h2 class="page-title mb-5">
+				<span class="highlight1 white-text">{{ $t('pages.event-details.contacts-followus-title') }}</span>
+			</h2>
+			<p class="page-description">{{ $t('pages.event-details.contacts-followus-text') }}</p>
+			<div class="d-flex justify-content-center align-items-center">
+				<a v-for="(social, social_name) in $t('info.social')" :href="social.url" target="_blank" class="socialButton1 observer-activate-once" :class="social_name">
 					<font-awesome-icon :icon="['fab', social_name]" />
 				</a>
 			</div>
 		</div>
 		<div class="contact-info text-center">
-			<h2 class="page-title">Contattaci</h2>
-			<p class="page-description">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-			</p>
+			<h2 class="page-title mb-5">
+				<span class="highlight1 white-text">{{ $t('pages.event-details.contacts-links-title') }}</span>
+			</h2>
+			<p class="page-description mb-5">{{ $t('pages.event-details.contacts-links-text') }}</p>
 			<div class="d-flex justify-content-center flex-wrap">
 				<b-button
 					variant="outline-secondary"
@@ -57,24 +57,3 @@ const Component = Vue.extend({
 
 export default Component;
 </script>
-
-<style lang="scss">
-.contact-section{
-	.social-wrapper{
-		.socialButton1{
-			font-size: 10em;
-		}
-	}
-	.contact-info{
-		margin-top: 60px;
-		text-align: right;
-		.contact-button{
-			font-size: 2em;
-			text-transform: uppercase;
-			text-indent: 0.7em;
-			font-weight: 600;
-			margin: 0.5em;
-		}
-	}
-}
-</style>

@@ -1,25 +1,43 @@
 <template>
-	<section class="players-section container d-flex justify-content-center align-items-center">
-		<b-table striped hover :items="items" :fields="fields"></b-table>
+	<section class="players-section container d-flex justify-content-center align-items-center flex-column">
+
+		<h2 class="page-title mb-5">
+			<span class="highlight1 white-text">Lista iscritti</span>
+		</h2>
+		<b-table striped hover :items="Object.values(subscriptions)" :fields="tableFields"></b-table>
 	</section>
 </template>
 
 <script lang="ts">
 import Vue, { PropOptions } from 'vue';
-
+import { mapState } from 'vuex';
 
 const Component = Vue.extend({
 	name: 'event-players',
-	data() {
-		return {
-			fields: ['first_name', 'last_name', 'age'],
-			items: [
-				{ age: 40, first_name: 'tizio', last_name: 'caio' },
-				{ age: 21, first_name: 'lorem', last_name: 'ipsum' },
-				{ age: 89, first_name: 'aaaaaa', last_name: 'bbbbbbb' },
-			]
-		}
-    }
+	computed: {
+		tableFields() :object[] {
+			return [
+				{
+					key: 'username',
+					label: this.$t('username'),
+					thClass: 'text-center',
+					tdClass: 'main-info align-middle text-center',
+					sortable: true,
+				},
+				{
+					key: 'city',
+					label: this.$t('city'),
+					thClass: 'text-center',
+					tdClass: 'align-middle text-center',
+					sortable: true,
+				},
+			];
+		},
+
+		...mapState({
+			subscriptions: 'subscriptions'
+		}),
+	}
 });
 
 export default Component;

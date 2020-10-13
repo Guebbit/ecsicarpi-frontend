@@ -1,22 +1,34 @@
 <template>
 	<section class="subscription-section container d-flex justify-content-center flex-column">
 		<page-title
-			:title="'ISCRIVITI!'"
+			:title="'Iscriviti!'"
 		/>
-		<div class="battlefy-section text-center">
-			<div class="d-flex justify-content-center">
-				<a v-for="url in arrayUrls" :href="url" target="_blank" class="socialButton1">
+		<p class="page-subtitle text-center" v-html="$t('pages.event-details.subscription-free-text')"></p>
+
+		<div class="d-flex justify-content-center align-items-center">
+			<div class="cssArrow1 to-right">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div class="battlefy-wrapper d-flex justify-content-center align-items-center">
+				<a v-for="url in arrayUrls" :href="url" target="_blank" class="socialButton1 observer-activate-once">
 					<font-awesome-icon :icon="['fas', 'futbol']" />
 				</a>
 			</div>
-			<p class="page-subtitle">
-				Non sai come funziona <b class="text-secondary">BATTLEFY</b>?
-			</p>
+			<div class="cssArrow1 to-left">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center align-items-center">
+			<p class="page-subtitle mb-0 mr-5" v-html="$t('pages.event-details.subscription-battlefy-instructions-text')"></p>
 			<a class="btn iconButton1 with-hover"
 				href="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcarpiecsi%2Fvideos%2F289710082186887%2F&show_text=0&width=560"
 				target="_blank"
 			>
-				<span>Guarda il video</span>
+				<span>{{ $t('pages.event-details.subscription-battlefy-instructions-button') }}</span>
 				<span><font-awesome-icon :icon="['fas', 'video']" /></span>
 			</a>
 		</div>
@@ -65,13 +77,3 @@ const Component = Vue.extend({
 
 export default Component;
 </script>
-
-<style lang="scss">
-.subscription-section{
-	.battlefy-section{
-		.socialButton1{
-			font-size: 10em;
-		}
-	}
-}
-</style>

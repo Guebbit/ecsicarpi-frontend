@@ -6,6 +6,7 @@
 			'event-comingsoon': comingsoon
 		}"
 	>
+
 		<hero-header
 			:title="event.title"
 			:subtitle="event.subtitle"
@@ -29,16 +30,16 @@
 				</div>
 				<div class="d-flex justify-content-center">
 					<div class="platform-card" v-for="platform in event.platforms">
-						<img v-if="platform.media.thumbnail"
+						<img v-if="platform.MediaChunk.thumbnail"
 							class="img-fluid"
-							:src="platform.media.thumb100"
-							:data-src="platform.media.thumb800"
+							:src="platform.MediaChunk.thumb100"
+							:data-src="platform.MediaChunk.thumb800"
 							:title="platform.title ? platform.title : platform.name"
 							:alt="platform.alt"
 						/>
 						<img v-else
 							class="img-fluid"
-							:src="platform.media.thumb800"
+							:src="platform.MediaChunk.thumb800"
 							:title="platform.title ? platform.title : platform.name"
 							:alt="platform.alt"
 						/>
@@ -65,43 +66,60 @@
 			/>
 		</section>
 
-		<section-paywall-subscription
-			v-if="event.paywall"
-			:event_id = "event.id"
-			:title = "$t('pages.event-details.subscription-title', { name: event.title })"
-			:text = "$t('pages.event-details.subscription-text', { name: event.title })"
-			:price="event.paywall"
-		/>
-		<section-free-subscription
-			v-else
-			:event_id = "event.id"
-			:title = "$t('pages.event-details.subscription-title', { name: event.title })"
-			:text = "$t('pages.event-details.subscription-text', { name: event.title })"
-			:arrayUrls="event.array_urls"
-		/>
-
+		<template v-if="!ended">
+			<section-paywall-subscription
+				v-if="event.paywall"
+				:event_id = "event.id"
+				:title = "$t('pages.event-details.subscription-title', { name: event.title })"
+				:text = "$t('pages.event-details.subscription-text', { name: event.title })"
+				:price="event.paywall"
+				:arrayUrls="event.array_urls"
+			/>
+			<section-free-subscription
+				v-else
+				:event_id = "event.id"
+				:title = "$t('pages.event-details.subscription-title', { name: event.title })"
+				:text = "$t('pages.event-details.subscription-text', { name: event.title })"
+				:arrayUrls="event.array_urls"
+			/>
+		</template>
+		<section v-else class="blogpage1 d-flex justify-content-center flex-column">
+			<h2 class="page-title text-white mb-5">
+				<span class="highlight1">{{ $t('pages.event-details.subscription-event-ended-title') }}</span>
+			</h2>
+			<p class="page-subtitle text-center">Purtroppo l'evento è concluso, ma rimani aggiornato con i nuovi tornei:</p>
+			<b-button to="/events" style="max-width: 400px; margin: 0 auto">Scopri di più</b-button>
+			<article
+				v-if="event.WYSIWYG_post && event.WYSIWYG_post.length > 0"
+				class="blog-panel container"
+				v-html="event.WYSIWYG_post"
+			/>
+		</section>
 
 
 		<section-contacts
 
 		/>
 
-		<section-players
-
-		/>
 
 
-		<section id="regolamento" class="blogpage1">
+
+
+
+		<section class="blogpage1" v-if="event.WYSIWYG_pre && event.WYSIWYG_pre.length > 0">
 			<article
-				v-if="event.WYSIWYG_pre && event.WYSIWYG_pre.length > 0"
 				class="blog-panel container"
 				v-html="event.WYSIWYG_pre"
 			/>
-			<article
-				v-if="event.WYSIWYG_post && event.WYSIWYG_post.length > 0"
-				class="blog-panel container"
-				v-html="event.WYSIWYG_post"
-			/>
+		</section>
+
+		<section-players
+			 v-if="Object.values(subscriptions).length > 10"
+		/>
+
+		<section id="regolamento" class="blogpage1"
+			v-if="(event.WYSIWYG_rules && event.WYSIWYG_rules.length > 0) || (event.WYSIWYG_gamerules && event.WYSIWYG_gamerules.length > 0)"
+		>
 			<article
 				v-if="event.WYSIWYG_rules && event.WYSIWYG_rules.length > 0"
 				class="blog-panel container"
@@ -114,9 +132,6 @@
 			/>
 		</section>
 
-
-
-
 		<section-collab
 			:sponsors = "sponsorList"
 			:collaborators = "collabList"
@@ -126,7 +141,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapState } from 'vuex';
 import { eventMap, mediaMap, partnerMap } from '@/interfaces';
 
 import axios from 'axios';
@@ -172,6 +187,9 @@ const Component = Vue.extend({
 		...mapGetters({
 			loading: 'getAwait'
 		}),
+		...mapState({
+			subscriptions: 'subscriptions'
+		}),
 
 		uri() :string {
 			return this.$route.params.uri;
@@ -191,6 +209,10 @@ const Component = Vue.extend({
 			});
 		},
 
+
+		todaytimestamp() :number {
+			return Math.floor((new Date()).getTime() / 1000);
+		},
 		startTimestamp() :number {
 			//@ts-ignore
 			if(!this.event || !this.event.data_start)
@@ -201,7 +223,7 @@ const Component = Vue.extend({
 		endTimestamp() :number {
 			//@ts-ignore
 			if(!this.event || !this.event.data_end)
-				return 0;
+				return this.startTimestamp;
 			//@ts-ignore
 			return Math.floor((new Date(this.event.data_end)).getTime() / 1000);
 		},
@@ -220,7 +242,7 @@ const Component = Vue.extend({
 				"name": "CSI Carpi",
 				"url": "http://www.csicarpi.it/",
 				"role": "sponsor",
-				"media": {
+				"MediaChunk": {
 				  "url": "https://assets.guebbit.com/ecsicarpi/images/logo-csi.png",
 				  "thumb800": "",
 				  "thumb100": "",
@@ -246,36 +268,44 @@ const Component = Vue.extend({
 
 		ended() :boolean {
 			//@ts-ignore
-			return Date.now() > this.endTimestamp;
+			return this.todaytimestamp > this.endTimestamp;
 		},
 		active() :boolean {
 			//@ts-ignore
-			return this.startTimestamp > Date.now() && Date.now() < this.endTimestamp;
+			return this.startTimestamp > this.todaytimestamp && this.todaytimestamp < this.endTimestamp;
 		},
 		comingsoon() :boolean {
 			//@ts-ignore
-			return this.startTimestamp < Date.now();
+			return this.startTimestamp < this.todaytimestamp;
 		},
 	},
 	methods: {
 		...mapActions({
 			setLoading: 'setAwait',
 			getEvent: 'getEventsByUri',
-			editEvent: 'editEvent',
+			getSubscriptions: 'getSubscriptions',
 		}),
 	},
-	mounted(){
-		//this.editEvent({});
-	},
 	created(){
+		let arrayPromises :any[] = [];
+
+		arrayPromises.push();
+		arrayPromises.push();
+
 		this.setLoading([true, 'event']);
-		this.getEvent(this.uri).then(() => {
-			this.setLoading([false, 'event']);
-			return;//TODO
-			//@ts-ignore
-			if(!this.event)
-				this.$router.push('/');
-		});
+		this.getEvent(this.uri)
+			.then(() => {
+				//@ts-ignore
+				return this.getSubscriptions(this.event.id);//TODO
+				//@ts-ignore
+				if(!this.event)
+					this.$router.push('/');
+				//@ts-ignore
+				return this.getSubscriptions(this.event.id);
+			})
+			.then(() => {
+				this.setLoading([false, 'event']);
+			});
 	}
 });
 
@@ -284,11 +314,13 @@ export default Component;
 
 
 <style lang="scss">
+$cssArrow1-speed: 1.5s;
+
 @import '@/assets/scss/core';
 @import '@/assets/scss/components/colorbutton1';
 @import '@/assets/scss/components/blogpage1';
 @import '@/assets/scss/components/csshake1';
-
+@import '@/assets/scss/components/cssarrow1';
 
 #event-details-page{
 	margin-bottom: 50px;
@@ -341,7 +373,6 @@ export default Component;
 		}
 	}
 
-
 	.info-panels{
 		.cardPanel4{
 			margin-top: 60px;
@@ -355,11 +386,50 @@ export default Component;
 		}
 	}
 
+	.contact-section{
+		.social-wrapper{
+			min-height: 10em;
+		}
+		.contact-info{
+			margin-top: 60px;
+			text-align: right;
+			.contact-button{
+				font-size: 1.2em;
+				text-transform: uppercase;
+				text-indent: 0.7em;
+				font-weight: 600;
+				margin: 0.5em;
+				@include media-breakpoint-up(lg) {
+					font-size: 2em;
+				}
+			}
+		}
+	}
+
 	.subscription-section{
+		.card{
+			.card-header{
+				font-size: 1.5em;
+				text-transform: uppercase;
+			}
+			.card-text{
+				font-size: 1.2em;
+			}
+		}
+		.to-right{
+			transform: rotate(270deg);
+			margin-right: 1em;
+		}
+		.to-left{
+			transform: rotate(90deg);
+			margin-left: 1em;
+		}
 		.ballTitle{
 			text-transform: uppercase;
 		}
-		//.paypal-wrapper{}
+		.battlefy-wrapper{
+			min-height: 10em;
+		}
 	}
 
 	//TODO fare una versione generica per stylare le WYSIWYG
