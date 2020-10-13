@@ -6,22 +6,18 @@
 			'event-comingsoon': comingsoon
 		}"
 	>
-
 		<hero-header
 			:title="event.title"
 			:subtitle="event.subtitle"
 			:cover="coverGallery.length > 0 ? coverGallery[0] : null"
 		>
-		<b-link href="#subscription" class="cta-button colorButton1 call-to-action-wrapper">
-			{{ $t("subscribe") }}!
-		</b-link>
-
+			<b-link href="#subscription" class="cta-button colorButton1 call-to-action-wrapper">
+				{{ $t("subscribe") }}!
+			</b-link>
 		</hero-header>
-
 		<section class="first-section container d-flex justify-content-center align-items-center">
 			<div class="w-100">
 				<section-timer
-					v-if="comingsoon"
 					:start="event.data_start"
 					:end="event.data_end"
 				/>
@@ -265,19 +261,19 @@ const Component = Vue.extend({
 
 
 
-
-		ended() :boolean {
+		comingsoon() :boolean {
 			//@ts-ignore
-			return this.todaytimestamp > this.endTimestamp;
+			return this.startTimestamp >= this.todaytimestamp;
 		},
 		active() :boolean {
 			//@ts-ignore
-			return this.startTimestamp > this.todaytimestamp && this.todaytimestamp < this.endTimestamp;
+			return this.startTimestamp <= this.todaytimestamp && this.todaytimestamp <= this.endTimestamp;
 		},
-		comingsoon() :boolean {
+		ended() :boolean {
 			//@ts-ignore
-			return this.startTimestamp < this.todaytimestamp;
+			return this.endTimestamp <= this.todaytimestamp;
 		},
+
 	},
 	methods: {
 		...mapActions({
@@ -338,6 +334,32 @@ $cssArrow1-speed: 1.5s;
 		text-decoration: none !important;
 	}
 	.first-section{
+		.count-title{
+			margin-bottom: 1em;
+			font-weight: 700;
+			padding-top: 0.5em;
+			font-size: 3em;
+			text-align: center;
+			.mobile-screen{
+				display: block;
+				margin: 0 auto;
+				@include media-breakpoint-up(lg) {
+					display: none;
+				}
+			}
+			.large-screen{
+				margin: 0 12px;
+				@include media-breakpoint-down(lg) {
+					display: none;
+				}
+			}
+			.big{
+				font-size: 1.5em;
+			}
+		}
+		.year-label{
+			font-size: 3em;
+		}
 		.hashtag-wrapper{
 			padding-bottom: 60px;
 			text-align: center;

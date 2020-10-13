@@ -5,8 +5,8 @@
 		</b-navbar-brand>
 		<b-navbar-toggle target="main-nav-collapse"></b-navbar-toggle>
 		<b-collapse id="main-nav-collapse" is-nav>
-			<b-navbar-nav>
-				<b-nav-item-dropdown>
+			<b-navbar-nav class="ml-auto">
+				<b-nav-item-dropdown dropleft>
 					<!-- Using 'button-content' slot -->
 					<template v-slot:button-content>
 						{{ $tc('event', 2) }}

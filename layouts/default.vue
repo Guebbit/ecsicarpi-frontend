@@ -188,6 +188,16 @@ section{
 	}
 }
 
+#mainHeader{
+	.navbar-brand{
+		img{
+			max-width: 50px;
+			max-height: 50px;
+		}
+	}
+}
+
+
 
 /*
 //RE-TODO guebbit mixin

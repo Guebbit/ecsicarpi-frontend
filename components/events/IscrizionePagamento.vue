@@ -241,8 +241,7 @@ const Component = Vue.extend({
 
 			paypal.Buttons({
 				//commit: true,
-				//env: process.env.enviroment === "production" ? "production" : "sandbox",
-				env: "sandbox",
+				env: process.env.enviroment === "production" ? "production" : "sandbox",
 				client: {
 					sandbox: process.env.paypal_clientid,
 					production: process.env.paypal_clientid,

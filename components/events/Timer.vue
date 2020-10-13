@@ -1,13 +1,10 @@
 <template>
-	<time v-if="startTimestamp > now"
-		id="depletion"
-		class="countdown2"
-		:datetime="startTimestamp"
-		:date-timestamp="start"
-	>
+	<div class="time-section">
 		<h4 v-if="startTimestamp !== endTimestamp" class="count-title page-subtitle">
 			{{ $t("days")[startDayName] }} <b class="text-secondary">{{ startDay }}</b>
-			<big><b>{{ $t("months")[startMonth] }}</b></big>
+			<big>
+				<b>{{ $t("months")[startMonth] }}</b>
+			</big>
 			<font-awesome-icon
 				class="text-primary large-screen"
 				:icon="['fas', 'long-arrow-alt-right']"
@@ -17,34 +14,54 @@
 				:icon="['fas', 'long-arrow-alt-down']"
 			/>
 			{{ $t("days")[endDayName] }} <b class="text-secondary">{{ endDay }}</b>
-			<big><b>{{ $t("months")[endMonth] }}</b></big>
+			<big>
+				<b>{{ $t("months")[endMonth] }}</b>
+			</big>
 		</h4>
 		<h4 v-else class="count-title page-subtitle">
 			{{ $t("days")[startDayName] }} <b class="text-secondary">{{ startDay }}</b>
 			<br />
-			<big><b class="text-secondary">{{ $t("months")[startMonth] }}</b></big>
+			<big>
+				<b class="text-secondary">{{ $t("months")[startMonth] }}</b>
+			</big>
 		</h4>
-		<div class="countdown">
-			<div class="date-days">
-				<span class="timer">00</span>
-				<span class="label">Giorni</span>
+		<template v-if="endTimestamp < todaytimestamp">
+			<h5 class="year-label text-center mb-50" v-if="startYear !== endYear">
+				<b>{{ startYear }} - {{ endYear }}</b>
+			</h5>
+			<h5 class="year-label text-center mb-50" v-else>
+				<b>{{ startYear }}</b>
+			</h5>
+		</template>
+		<time
+			v-if="startTimestamp > todaytimestamp"
+			id="depletion"
+			class="countdown2 mt-100"
+			:datetime="startTimestamp"
+			:date-timestamp="start"
+		>
+			<div class="countdown">
+				<div class="date-days">
+					<span class="timer">00</span>
+					<span class="label">Giorni</span>
+				</div>
+				<div class="date-hours">
+					<span class="timer">00</span>
+					<span class="label">Ore</span>
+				</div>
+				<div class="date-minutes">
+					<span class="timer">00</span>
+					<span class="label">Minuti</span>
+				</div>
+				<div class="date-seconds">
+					<span class="timer">00</span>
+					<span class="label">Secondi</span>
+				</div>
 			</div>
-			<div class="date-hours">
-				<span class="timer">00</span>
-				<span class="label">Ore</span>
-			</div>
-			<div class="date-minutes">
-				<span class="timer">00</span>
-				<span class="label">Minuti</span>
-			</div>
-			<div class="date-seconds">
-				<span class="timer">00</span>
-				<span class="label">Secondi</span>
-			</div>
+		</time>
+		<div v-else>
+			<slot/>
 		</div>
-	</time>
-	<div v-else>
-		<slot/>
 	</div>
 </template>
 
@@ -90,6 +107,9 @@ const Component = Vue.extend({
 		startTimestamp() :number {
 			return Math.floor(this.startDate.getTime() / 1000);
 		},
+		startYear() :number {
+			return this.startDate.getFullYear();
+		},
 		startMonth() :number {
 			return this.startDate.getMonth();
 		},
@@ -104,6 +124,9 @@ const Component = Vue.extend({
 		endTimestamp() :number {
 			return Math.floor(this.endDate.getTime() / 1000);
 		},
+		endYear() :number {
+			return this.endDate.getFullYear();
+		},
 		endMonth() :number {
 			return this.endDate.getMonth();
 		},
@@ -114,12 +137,12 @@ const Component = Vue.extend({
 			return this.endDate.getDay();
 		},
 
-		now() :number {
+		todaytimestamp() :number {
 			return Math.floor((new Date()).getTime() / 1000);
 		},
 	},
 	mounted(){
-		if(this.startTimestamp <= this.now)
+		if(this.startTimestamp <= this.todaytimestamp)
 			return false;
 		var timerObject :HTMLElement = document.getElementById("depletion")!;
 		var timerChildren={
@@ -150,56 +173,35 @@ export default Component;
 
 <style lang="scss">
 @import '@/assets/scss/core';
-@import '@/assets/scss/components/cardpanel4';
 
-.countdown2{
-	display: block;
-	position: relative;
-	z-index: 1;
-	margin-top: -5em;
-	margin-bottom: 50px;
-	.timer{
-		color: $primary-color;
-		line-height: 1;
-		font-size: 2.5em;
-		font-weight: 600;
-		text-shadow: 0.03em 2px rgba($secondary-color,0.8);
-	}
-	.count-title{
-		margin-bottom: 1em;
-		font-weight: 700;
-		padding-top: 0.5em;
-		font-size: 3em;
-		text-align: center;
-		.mobile-screen{
-			display: block;
-			margin: 0 auto;
-			@include media-breakpoint-up(lg) {
-				display: none;
-			}
+.time-section{
+	.countdown2{
+		display: block;
+		position: relative;
+		z-index: 1;
+		margin-top: -5em;
+		margin-bottom: 50px;
+		.timer{
+			color: $primary-color;
+			line-height: 1;
+			font-size: 2.5em;
+			font-weight: 600;
+			text-shadow: 0.03em 2px rgba($secondary-color,0.8);
 		}
-		.large-screen{
-			margin: 0 12px;
-			@include media-breakpoint-down(lg) {
-				display: none;
-			}
-		}
-		.big{
-			font-size: 1.5em;
-		}
-	}
-	.countdown{
-		display: flex;
-		justify-content: space-around;
-		& > div{
+		.countdown{
 			display: flex;
-			flex-direction: column;
-			text-align: center;
-			font-size: 1.2em;
-		}
-		@include media-breakpoint-up(lg) {
-			font-size: 2em;
+			justify-content: space-around;
+			& > div{
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				font-size: 1.2em;
+			}
+			@include media-breakpoint-up(lg) {
+				font-size: 2em;
+			}
 		}
 	}
 }
+
 </style>
