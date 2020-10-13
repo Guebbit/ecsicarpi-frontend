@@ -1,10 +1,10 @@
 <template>
-	<section id="subscription" class="subscription-section container d-flex justify-content-center flex-column">
+	<section class="subscription-section container d-flex justify-content-center flex-column">
 		<page-title
+			id="subscription"
 			:title="payment_success ? 'ISCRITTO!' : 'Iscriviti'"
 			:active="payment_success"
 		/>
-
 		<b-form
 			v-if="!payment_success && showForm"
 			class="mb-50"
@@ -92,7 +92,7 @@
 		        align="center"
 				:header="$t('pages.event-details.subscription-form-success-title')"
 			>
-				<b-card-text v-html="$t('pages.event-details.subscription-form-success-text', { user: form.username, email: form.email })"></b-card-text>
+				<b-card-text v-html="$t('pages.event-details.subscription-form-success-text', { user: form.username ? form.username : this.storagedUsername, email: form.email ? form.email : this.storagedEmail })"></b-card-text>
 
 				<div class="d-flex justify-content-center align-items-center flex-wrap">
 					<div class="cssArrow1 to-right">
@@ -292,6 +292,8 @@ const Component = Vue.extend({
 							city: this.form.city,
 						});
 						this.payment_success = true;
+						if(this.arrayUrls.length > 0)
+							window.open(this.arrayUrls[0], "_blank");
 					});
 				},
 

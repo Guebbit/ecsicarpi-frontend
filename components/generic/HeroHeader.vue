@@ -25,7 +25,7 @@
 				:alt="cover.alt"
 			/>
 		</template>
-		<div class="full-height panel-content d-flex align-items-end">
+		<div class="panel-content d-flex align-items-end">
 			<div>
 				<h1 class="page-title text-white"><span class="highlight1 with-opacity">{{ title }}</span></h1>
 				<h4 class="page-subtitle text-white"><span class="highlight1 secondary with-opacity">{{ subtitle }}</span></h4>

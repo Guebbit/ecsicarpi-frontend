@@ -31,7 +31,7 @@
 					:href="'tel:'+$t('info.tel')"
 				>
 					{{ $t("info.tel") }}
-					<font-awesome-icon class="ml-4" :icon="['fas', 'phone']" />
+					<font-awesome-icon class="ml-4" :icon="['fab', 'whatsapp']" />
 				</b-button>
 			</div>
 		</div>
@@ -43,10 +43,10 @@ import Vue from 'vue';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faEnvelope, faPhone, faFacebook, faInstagram);
+library.add(faEnvelope, faPhone, faFacebook, faInstagram, faWhatsapp);
 
 const Component = Vue.extend({
 	name: 'event-subscription',

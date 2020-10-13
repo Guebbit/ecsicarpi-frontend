@@ -11,7 +11,7 @@
 			:subtitle="event.subtitle"
 			:cover="coverGallery.length > 0 ? coverGallery[0] : null"
 		>
-			<b-link href="#subscription" class="cta-button colorButton1 call-to-action-wrapper">
+			<b-link v-if="!ended" href="#subscription" class="cta-button colorButton1 call-to-action-wrapper">
 				{{ $t("subscribe") }}!
 			</b-link>
 		</hero-header>
@@ -282,17 +282,10 @@ const Component = Vue.extend({
 			getSubscriptions: 'getSubscriptions',
 		}),
 	},
-	created(){
-		let arrayPromises :any[] = [];
-
-		arrayPromises.push();
-		arrayPromises.push();
-
+	mounted(){
 		this.setLoading([true, 'event']);
 		this.getEvent(this.uri)
 			.then(() => {
-				//@ts-ignore
-				return this.getSubscriptions(this.event.id);//TODO
 				//@ts-ignore
 				if(!this.event)
 					this.$router.push('/');

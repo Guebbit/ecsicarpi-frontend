@@ -152,6 +152,10 @@ export default Component;
 
 // https://material-components.github.io/material-components-web-catalog/#/component/ripple
 
+html{
+	background-color: #FFFFFF;
+}
+
 section{
 	min-height: 90vh;
 	padding-top: 10vh;
@@ -189,10 +193,14 @@ section{
 }
 
 #mainHeader{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99;
+    width: 100%;
 	.navbar-brand{
 		img{
-			max-width: 50px;
-			max-height: 50px;
+			height: 40px;
 		}
 	}
 }

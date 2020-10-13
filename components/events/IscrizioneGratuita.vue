@@ -1,5 +1,5 @@
 <template>
-	<section class="subscription-section container d-flex justify-content-center flex-column">
+	<section id="subscription" class="subscription-section container d-flex justify-content-center flex-column">
 		<page-title
 			:title="'Iscriviti!'"
 		/>
