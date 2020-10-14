@@ -7,8 +7,8 @@
 		}"
 	>
 		<hero-header
-			:title="event.title"
-			:subtitle="event.subtitle"
+			:title="(event.id !== '3' && event.id !== '4') ? event.title : ''"
+			:subtitle="(event.id !== '3' && event.id !== '4') ? event.subtitle : ''"
 			:cover="coverGallery.length > 0 ? coverGallery[0] : null"
 		>
 			<b-link v-if="!ended" href="#subscription" class="cta-button colorButton1 call-to-action-wrapper">
@@ -49,16 +49,16 @@
 		<section class="info-panels">
 			<info-panel
 				shadow
-				:title = "'Lorem ipsum dolor sit amet'"
-				:text = "'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-				:image = "'https://placehold.it/1280x720'"
+				:title = "$t('pages.temp.infopanel-1-title')"
+				:text = "$t('pages.temp.infopanel-1-text')"
+				:image = "'/images/logotipo-ecsi.png'"
 			/>
 			<info-panel
 				shadow
 				inverted
-				:title = "'Lorem ipsum dolor sit amet'"
-				:text = "'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-				:image = "'https://placehold.it/1280x720'"
+				:title = "$t('pages.temp.infopanel-2-title')"
+				:text = "$t('pages.temp.infopanel-2-text')"
+				:image = "'/images/generic/premi-1.png'"
 			/>
 		</section>
 
@@ -141,6 +141,7 @@ import { mapGetters, mapActions, mapState } from 'vuex';
 import { eventMap, mediaMap, partnerMap } from '@/interfaces';
 
 import axios from 'axios';
+import { lazyload, activator } from "@/assets/js/temporaryGuebbit2";
 
 import HeroHeader from '@/components/generic/HeroHeader.vue';
 import sectionTimer from '@/components/events/Timer.vue';
@@ -283,6 +284,8 @@ const Component = Vue.extend({
 		}),
 	},
 	mounted(){
+		lazyload();
+		activator();
 		this.setLoading([true, 'event']);
 		this.getEvent(this.uri)
 			.then(() => {
@@ -295,7 +298,7 @@ const Component = Vue.extend({
 			.then(() => {
 				this.setLoading([false, 'event']);
 			});
-	}
+	},
 });
 
 export default Component;

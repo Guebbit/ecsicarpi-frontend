@@ -27,8 +27,8 @@
 		</template>
 		<div class="panel-content d-flex align-items-end">
 			<div>
-				<h1 class="page-title text-white"><span class="highlight1 with-opacity">{{ title }}</span></h1>
-				<h4 class="page-subtitle text-white"><span class="highlight1 secondary with-opacity">{{ subtitle }}</span></h4>
+				<h1 v-if="title.length > 0" class="page-title text-white"><span class="highlight1 with-opacity">{{ title }}</span></h1>
+				<h4 v-if="subtitle.length > 0" class="page-subtitle text-white"><span class="highlight1 secondary with-opacity">{{ subtitle }}</span></h4>
 				<slot />
 			</div>
 		</div>

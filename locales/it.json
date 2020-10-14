@@ -25,6 +25,7 @@
 	"event": "Evento | Eventi",
 	"username": "Nickname",
 	"city": "Città",
+	"subscribe": "Iscriviti",
 	"meta": {
 		"title": "E-CSI E-Sport",
 		"description": "Il CSI scende in campo nel mondo E-Sport. Tornei online di vari videogames e piattaforme. Playstation, Xbox, Switch e Computer",
@@ -77,9 +78,15 @@
 			"subscription-battlefy-instructions-text": "Non sai come funziona <b class=\"text-secondary\">BATTLEFY</b>?",
 			"subscription-battlefy-instructions-button": "Guarda il video",
 			"contacts-followus-title": "Seguici",
-			"contacts-followus-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+			"contacts-followus-text": "",
 			"contacts-links-title": "Contattaci",
-			"contacts-links-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+			"contacts-links-text": ""
+		},
+		"temp": {
+			"infopanel-1-title": "I nostri tornei",
+			"infopanel-1-text": "Gli E-Sport sono il futuro del videogioco competitivo online ed offline. Un giro da miliardi di dollari con milioni di spettatori e sempre più brand interessanti. Pane per il CSI, Centro Sportivo Italiano, che adesso entra in campo.",
+			"infopanel-2-title": "Grandi premi",
+			"infopanel-2-text": "Ogni torneo porta ricchi premi. Buoni Amazon oppure gadget come visori, PS5 e sedie da gaming"
 		}
 	}
 }
