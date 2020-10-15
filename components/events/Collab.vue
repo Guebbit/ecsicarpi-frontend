@@ -1,7 +1,9 @@
 <template>
-	<div>
+	<section class="section-collabs">
 		<template v-if="sponsors.length > 0">
-			<h2 class="page-title mb-50">Sponsor</h2>
+			<h2 class="page-title mb-50">
+				<span class="highlight1 white-text">{{ $tc('sponsors', sponsors.length) }}</span>
+			</h2>
 			<div class="sponsorPanel">
 				<a v-for="sponsor in sponsors" :href="sponsor.url" target="_blank">
 					<img v-if="sponsor.MediaChunk.thumb100"
@@ -21,10 +23,12 @@
 			</div>
 		</template>
 		<template v-if="collaborators.length > 0">
-			<h2 class="page-title mt-100 mb-50">Collaborazioni</h2>
+			<h2 class="page-title mb-50 mt-100">
+				<span class="highlight1 white-text">{{ $tc('collaborators', collaborators.length) }}</span>
+			</h2>
 			<div class="collabPanel3">
 			    <div>
-			        <div v-for="collab in collaborators">
+			        <div v-for="collab in collaborators" class="d-flex justify-content-center align-items-center">
 						<a :href="collab.url" target="_blank">
 							<img v-if="collab.MediaChunk.thumb100"
 								:src="collab.MediaChunk.thumb100"
@@ -42,7 +46,7 @@
 			    </div>
 			</div>
 		</template>
-	</div>
+	</section>
 </template>
 
 <script lang="ts">

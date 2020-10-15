@@ -2,7 +2,7 @@
 	<section class="subscription-section container d-flex justify-content-center flex-column">
 		<page-title
 			id="subscription"
-			:title="payment_success ? 'ISCRITTO!' : 'Iscriviti'"
+			:title="payment_success ? $t('subscribe-yourself-done') : $t('subscribe-yourself')"
 			:active="payment_success"
 		/>
 		<b-form
@@ -62,9 +62,7 @@
 						<b-form-checkbox-group v-model="form.checked" required>
 							<!-- TODO $t -->
 							<b-form-checkbox value="privacy">
-								Preso atto dell'informativa
-								<a target="_blank" href="https://www.garanteprivacy.it/documents/10160/0/Regolamento+UE+2016+679.+Arricchito+con+riferimenti+ai+Considerando+Aggiornato+alle+rettifiche+pubblicate+sulla+Gazzetta+Ufficiale++dell%27Unione+europea+127+del+23+maggio+2018">Privacy art. 13 Reg. UE 679/2016</a>
-								autorizzo il trattamento dei dati di cui al presente modulo di contatto per i fini e le modalità indicate nell'informativa
+								<span v-html="$t('pages.generic.privacy-checkbox')"></span>
 							</b-form-checkbox>
 						</b-form-checkbox-group>
 					</b-form-group>
@@ -79,7 +77,7 @@
 			class="paypal-wrapper text-center"
 		>
 			<div ref="paypal"></div>
-			<b-button type="submit" variant="secondary" size="lg" href="#contatti">Non trovi un metodo di pagamento adeguato? <b>Contattaci!</b></b-button>
+			<b-button type="submit" variant="secondary" size="lg" href="#contatti"><span v-html="$t('pages.event-details.subscription-payment-alternative')"></span></b-button>
 		</div>
 
 

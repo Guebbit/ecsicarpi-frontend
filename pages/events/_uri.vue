@@ -83,6 +83,7 @@
 			<h2 class="page-title text-white mb-5">
 				<span class="highlight1">{{ $t('pages.event-details.subscription-event-ended-title') }}</span>
 			</h2>
+			<!-- TODO fare meglio -->
 			<p class="page-subtitle text-center">Purtroppo l'evento è concluso, ma rimani aggiornato con i nuovi tornei:</p>
 			<b-button to="/events" style="max-width: 400px; margin: 0 auto">Scopri di più</b-button>
 			<article
@@ -141,7 +142,7 @@ import { mapGetters, mapActions, mapState } from 'vuex';
 import { eventMap, mediaMap, partnerMap } from '@/interfaces';
 
 import axios from 'axios';
-import { lazyload, activator } from "@/assets/js/temporaryGuebbit2";
+import { lazyload, activator, intersectionHelper } from "@/assets/js/temporaryGuebbit2";
 
 import HeroHeader from '@/components/generic/HeroHeader.vue';
 import sectionTimer from '@/components/events/Timer.vue';
@@ -286,6 +287,20 @@ const Component = Vue.extend({
 	mounted(){
 		lazyload();
 		activator();
+		intersectionHelper(document.querySelectorAll('.blog-section'),{
+			threshold: 1,
+			intersectingCallback: function(entry){
+				entry.classList.add("active");
+				return true;
+			},
+			notIntersectingCallback: function(entry){
+				entry.classList.remove("active");
+				return true;
+			}
+		})
+
+
+
 		this.setLoading([true, 'event']);
 		this.getEvent(this.uri)
 			.then(() => {
@@ -447,6 +462,12 @@ $cssArrow1-speed: 1.5s;
 		}
 		.battlefy-wrapper{
 			min-height: 10em;
+		}
+	}
+
+	.section-collabs{
+		.sponsorPanel{
+			padding: 24px;
 		}
 	}
 

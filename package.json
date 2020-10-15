@@ -20,6 +20,7 @@
     "@nuxtjs/gtm": "^2.2.2",
     "@nuxtjs/pwa": "^3.0.2",
     "@nuxtjs/svg": "^0.1.6",
+    "@tinymce/tinymce-vue": "^3.2.3",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.16.0",
     "core-js": "^3.6.5",

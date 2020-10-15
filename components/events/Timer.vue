@@ -43,19 +43,19 @@
 			<div class="countdown">
 				<div class="date-days">
 					<span class="timer">00</span>
-					<span class="label">Giorni</span>
+					<span class="label">{{ $tc('day', 2) }}</span>
 				</div>
 				<div class="date-hours">
 					<span class="timer">00</span>
-					<span class="label">Ore</span>
+					<span class="label">{{ $tc('hour', 2) }}</span>
 				</div>
 				<div class="date-minutes">
 					<span class="timer">00</span>
-					<span class="label">Minuti</span>
+					<span class="label">{{ $tc('minute', 2) }}</span>
 				</div>
 				<div class="date-seconds">
 					<span class="timer">00</span>
-					<span class="label">Secondi</span>
+					<span class="label">{{ $tc('second', 2) }}</span>
 				</div>
 			</div>
 		</time>

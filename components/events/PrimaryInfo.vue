@@ -1,6 +1,6 @@
 <template>
 	<div v-if="!inverted"
-		class="cardPanel4"
+		class="cardPanel4 mobile-friendly"
 		:class="{ 'text-with-shadow': shadow }"
 	>
 		<div class="static-container">
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	<div v-else
-		class="cardPanel4"
+		class="cardPanel4 mobile-friendly"
 		:class="{ 'text-with-shadow': shadow }"
 	>
 		<div class="static-container">

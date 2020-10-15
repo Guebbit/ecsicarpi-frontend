@@ -97,4 +97,11 @@ $cardPanel4-shadow-color: g-color("shades","white") !default;
 			}
 		}
 	}
+	&.mobile-friendly{
+		.static-container{
+			@include builder_media("small") {
+				margin-top: 100%;
+			}
+		}
+	}
 }

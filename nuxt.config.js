@@ -10,7 +10,8 @@ export default {
 		apiUrl: process.env.API_URL || 'localhost',
 		enviroment: process.env.ENVIROMENT || 'development',
 		paypal_account: process.env.PAYPAL_ACCOUNT,
-		paypal_clientid: process.env.PAYPAL_CLIENTID
+		paypal_clientid: process.env.PAYPAL_CLIENTID,
+		apikey_tinymce: "e0lb76i5zc7pm7wdm1ol3lpzgwhz6g4e92pqmqchg9oucjvs",
 	},
 
 	// Global page headers (https://go.nuxtjs.dev/config-head)

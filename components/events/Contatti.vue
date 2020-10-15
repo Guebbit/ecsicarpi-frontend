@@ -28,7 +28,7 @@
 				<b-button
 					variant="outline-secondary"
 					class="contact-button d-inline-flex justify-content-center align-items-center"
-					:href="'tel:'+$t('info.tel')"
+					:href="'tel:'+$t('info.tel').replace(' ', '')"
 				>
 					{{ $t("info.tel") }}
 					<font-awesome-icon class="ml-4" :icon="['fab', 'whatsapp']" />

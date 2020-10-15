@@ -22,10 +22,18 @@
 		"Novembre",
 		"Dicembre"
 	],
+	"day": "giorno | giorni",
+	"hour": "ora | ore",
+	"minute": "minuto | minuti",
+	"second": "secondo | secondi",
 	"event": "Evento | Eventi",
 	"username": "Nickname",
 	"city": "Città",
 	"subscribe": "Iscriviti",
+	"sponsors": "Sponsor | Sponsors",
+	"collaborators": "Collaboratore | Collaboratori",
+	"subscribe-yourself": "Iscriviti",
+	"subscribe-yourself-done": "Iscritto",
 	"meta": {
 		"title": "E-CSI E-Sport",
 		"description": "Il CSI scende in campo nel mondo E-Sport. Tornei online di vari videogames e piattaforme. Playstation, Xbox, Switch e Computer",
@@ -43,7 +51,7 @@
 	},
 	"info": {
 		"email": "esport@csicarpi.it",
-		"tel": "3516178045",
+		"tel": "351 617 8045",
 		"social": {
 			"facebook": {
 				"url": "https://www.facebook.com/carpiecsi",
@@ -58,6 +66,9 @@
 		}
 	},
 	"pages": {
+		"generic": {
+			"privacy-checkbox": "Preso atto dell'informativa <a target='_blank' href='https://www.garanteprivacy.it/documents/10160/0/Regolamento+UE+2016+679.+Arricchito+con+riferimenti+ai+Considerando+Aggiornato+alle+rettifiche+pubblicate+sulla+Gazzetta+Ufficiale++dell%27Unione+europea+127+del+23+maggio+2018'>Privacy art. 13 Reg. UE 679/2016</a> autorizzo il trattamento dei dati di cui al presente modulo di contatto per i fini e le modalità indicate nell'informativa"
+		},
 		"event-details": {
 			"subscription-event-ended-title": "Torneo concluso",
 			"subscription-title": "Iscrizione {name}",
@@ -74,13 +85,15 @@
 			"subscription-form-success-title": "Iscrizione completata",
 			"subscription-form-success-text": "Ti ringraziamo <b>{user}</b>, eccoti i link per partecipare al torneo. Solo il nick che hai scelto verrà abilitato. <br> Ti invieremo anche una mail all'indirizzo <b>{email}</b> con il link Battlefy per partecipare al torneo. <br> In caso di problemi non esitare a <b><a href=\"#contatti\">CONTATTARCI</a></b>",
 			"subscription-form-success-button": "Clicca per partecipare",
+			"subscription-payment-alternative": "Non trovi un metodo di pagamento adeguato? <b>Contattaci!</b>",
 			"subscription-free-text": "L'iscrizione è gratuita, clicca sul link in basso per andare su <b>Battlefy</b>, piattaforma comoda ed intuitiva per la gestione del torneo e dei giocatori. <br> Se dovessi avere dubbi, non esitare a <b><a href=\"#contatti\">CONTATTARCI</a></b>",
 			"subscription-battlefy-instructions-text": "Non sai come funziona <b class=\"text-secondary\">BATTLEFY</b>?",
 			"subscription-battlefy-instructions-button": "Guarda il video",
 			"contacts-followus-title": "Seguici",
 			"contacts-followus-text": "",
 			"contacts-links-title": "Contattaci",
-			"contacts-links-text": ""
+			"contacts-links-text": "",
+			"players-title": "Lista giocatori"
 		},
 		"temp": {
 			"infopanel-1-title": "I nostri tornei",
