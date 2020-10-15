@@ -98,11 +98,6 @@
 
 		/>
 
-
-
-
-
-
 		<section class="blogpage1" v-if="event.WYSIWYG_pre && event.WYSIWYG_pre.length > 0">
 			<article
 				class="blog-panel container"
@@ -117,6 +112,9 @@
 		<section id="regolamento" class="blogpage1"
 			v-if="(event.WYSIWYG_rules && event.WYSIWYG_rules.length > 0) || (event.WYSIWYG_gamerules && event.WYSIWYG_gamerules.length > 0)"
 		>
+			<h2 class="page-title mb-50">
+				<span class="highlight1 white-text">{{ $t('rule-book') }}</span>
+			</h2>
 			<article
 				v-if="event.WYSIWYG_rules && event.WYSIWYG_rules.length > 0"
 				class="blog-panel container"
