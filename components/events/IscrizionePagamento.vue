@@ -2,12 +2,15 @@
 	<section class="subscription-section container d-flex justify-content-center flex-column">
 		<page-title
 			id="subscription"
+			class="mb-20"
 			:title="payment_success ? $t('subscribe-yourself-done') : $t('subscribe-yourself')"
 			:active="payment_success"
 		/>
+		<h3 class="page-subtitle text-primary" v-html="$t('pages.event-details.subscription-paid-title', { name: this.event_name })"></h3>
+		<p class="page-description text-center" v-html="$t('pages.event-details.subscription-paid-text', { price: this.event_price })"></p>
 		<b-form
 			v-if="!payment_success && showForm"
-			class="mb-50"
+			class="mb-50 mt-50"
 			@submit.prevent="onFormSubmit"
 			@reset.prevent="onFormReset"
 		>
@@ -172,19 +175,13 @@ const Component = Vue.extend({
 			type: String,
 			required: true,
 		} as PropOptions<string>,
-		title: {
+		event_name: {
 			type: String,
 			default: () => {
 				return '';
 			}
 		} as PropOptions<string>,
-		text: {
-			type: String,
-			default: () => {
-				return '';
-			}
-		} as PropOptions<string>,
-		price: {
+		event_price: {
 			type: String,
 			default: () => {
 				return "0.01";
@@ -258,10 +255,10 @@ const Component = Vue.extend({
 					return actions.order.create({
 						purchase_units: [{
 							intent: 'CAPTURE',
-							description: this.text,
+							description: 'Iscrizione' + this.event_name,
 							amount: {
 								currency_code: 'EUR',
-								value: this.price,
+								value: this.event_price,
 							},
 						}]
 					});

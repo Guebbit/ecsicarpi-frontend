@@ -3,7 +3,8 @@
 		<page-title
 			:title="'Iscriviti!'"
 		/>
-		<p class="page-subtitle text-center" v-html="$t('pages.event-details.subscription-free-text')"></p>
+		<h3 class="page-subtitle text-primary" v-html="$t('pages.event-details.subscription-free-title', { name: this.event_name })"></h3>
+		<p class="page-description text-center" v-html="$t('pages.event-details.subscription-free-text')"></p>
 
 		<div class="d-flex justify-content-center align-items-center">
 			<div class="cssArrow1 to-right">
@@ -54,13 +55,7 @@ const Component = Vue.extend({
 		FontAwesomeIcon,
 	},
 	props: {
-		title: {
-			type: String,
-			default: () => {
-				return '';
-			}
-		} as PropOptions<string>,
-		text: {
+		event_name: {
 			type: String,
 			default: () => {
 				return '';

@@ -66,16 +66,13 @@
 			<section-paywall-subscription
 				v-if="event.paywall"
 				:event_id = "event.id"
-				:title = "$t('pages.event-details.subscription-title', { name: event.title })"
-				:text = "$t('pages.event-details.subscription-text', { name: event.title })"
-				:price="event.paywall"
+				:event_name = "event.title"
+				:event_price="event.paywall"
 				:arrayUrls="event.array_urls"
 			/>
 			<section-free-subscription
 				v-else
-				:event_id = "event.id"
-				:title = "$t('pages.event-details.subscription-title', { name: event.title })"
-				:text = "$t('pages.event-details.subscription-text', { name: event.title })"
+				:event_name = "event.title"
 				:arrayUrls="event.array_urls"
 			/>
 		</template>
