@@ -116,7 +116,7 @@
 					</div>
 				</div>
 				<div class="text-center">
-					<b-button variant="secondary" size="sm" @click.prevent="storageReset()">Vuoi effettuare un altra registrazione?</b-button>
+					<b-button variant="secondary" size="sm" @click.prevent="storageReset()">{{ $t('subscription-another-button') }}</b-button>
 				</div>
 			</b-card>
 
