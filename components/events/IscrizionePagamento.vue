@@ -80,7 +80,7 @@
 			class="paypal-wrapper text-center"
 		>
 			<div ref="paypal"></div>
-			<b-button type="submit" variant="secondary" size="lg" href="#contatti"><span v-html="$t('pages.event-details.subscription-payment-alternative')"></span></b-button>
+			<b-button type="submit" variant="secondary" size="lg" href="#contacts"><span v-html="$t('pages.event-details.subscription-payment-alternative')"></span></b-button>
 		</div>
 
 

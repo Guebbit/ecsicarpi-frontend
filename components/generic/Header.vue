@@ -6,6 +6,12 @@
 		<b-navbar-toggle target="main-nav-collapse"></b-navbar-toggle>
 		<b-collapse id="main-nav-collapse" is-nav>
 			<b-navbar-nav class="ml-auto">
+				<b-nav-item
+					v-for="route in routes"
+					:to="route"
+				>
+					{{ route.label }}
+				</b-nav-item>
 				<b-nav-item-dropdown dropleft>
 					<!-- Using 'button-content' slot -->
 					<template v-slot:button-content>
@@ -33,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropOptions } from 'vue';
 import { mapState, mapGetters, mapActions } from 'vuex';
 
 const Component = Vue.extend({
@@ -42,6 +48,14 @@ const Component = Vue.extend({
 		...mapState({
 			events: 'events'
 		}),
+	},
+	props: {
+		routes: {
+			type: Array,
+			default: () => {
+				return [];
+			}
+		} as PropOptions<any[]>,
 	},
 });
 

@@ -106,7 +106,7 @@
 			 v-if="Object.values(subscriptions).length > 10"
 		/>
 
-		<section id="regolamento" class="blogpage1"
+		<section id="rules" class="blogpage1"
 			v-if="(event.WYSIWYG_rules && event.WYSIWYG_rules.length > 0) || (event.WYSIWYG_gamerules && event.WYSIWYG_gamerules.length > 0)"
 		>
 			<h2 class="page-title mb-50">
@@ -150,6 +150,7 @@ import sectionCollab from '@/components/events/Collab.vue';
 
 const Component = Vue.extend({
 	name: 'Event-details-page',
+	layout: 'eventDetails',
 	async asyncData ({ params, error, payload, store }) {
 		if(payload)
 			return {

@@ -1,5 +1,5 @@
 <template>
-	<section id="contatti" class="contact-section container d-flex justify-content-center flex-column">
+	<section id="contacts" class="contact-section container d-flex justify-content-center flex-column">
 		<div class="contact-info text-center mb-20">
 			<h2 class="page-title mb-5">
 				<span class="highlight1 white-text">{{ $t('pages.event-details.contacts-followus-title') }}</span>

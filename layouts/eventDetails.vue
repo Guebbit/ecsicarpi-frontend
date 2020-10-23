@@ -13,7 +13,6 @@ import Vue from 'vue';
 
 import MainHeader from '@/components/generic/Header.vue';
 import MainFooter from '@/components/generic/Footer.vue';
-
 import layoutDefaultStructure from './mixin/layoutDefaultStructure';
 
 const Component = Vue.extend({
@@ -23,6 +22,33 @@ const Component = Vue.extend({
 	components: {
 		MainHeader,
 		MainFooter
+	},
+	computed: {
+		routesArray() {
+			let routes = [],
+				i;
+			[
+				{
+					route: '#subscription',
+					label: 'Iscriviti'
+				},
+				{
+					route: '#rules',
+					label: 'Regolamento'
+				},
+				{
+					route: '#contacts',
+					label: 'Contattaci'
+				},
+			].forEach(({ route, label }) => {
+				routes.push({
+					...this.$router.currentRoute,
+					hash: route,
+					label: label
+				});
+			});
+			return routes;
+		},
 	},
 });
 
