@@ -1,5 +1,5 @@
 <template>
-	<li class="post-body row">
+	<li class="post-body row observer-activate observer-mobile-only">
 		<div class="col-sm-12 col-lg-4 post-date">
 			<img :src="image" :alt="title">
 			<time :datetime="start">
@@ -153,9 +153,11 @@ ul.postList3 {
 	& > li {
 		&.active,
 		&:hover{
-			margin-right: -3px;
-			border-right: 3px solid;
-			border-color: $secondary-color;
+			@include media-breakpoint-up(lg) {
+				margin-right: -3px;
+				border-right: 3px solid;
+				border-color: $secondary-color;
+			}
 		}
 	}
 	.post-action > *{

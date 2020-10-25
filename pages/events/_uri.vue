@@ -91,9 +91,7 @@
 		</section>
 
 
-		<section-contacts
-
-		/>
+		<section-contacts />
 
 		<section class="blogpage1" v-if="event.WYSIWYG_pre && event.WYSIWYG_pre.length > 0">
 			<article

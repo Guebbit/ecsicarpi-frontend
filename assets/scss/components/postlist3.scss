@@ -2,10 +2,10 @@ $postList3-time-background: $secondary-color !default;
 $postList3-time-color: g-color("shades","white") !default;
 
 ul.postList3 {
+	padding: 0;
 	margin: 0;
 	position: relative;
 	& > li {
-		height: 160px;
 		margin: 0;
 		transition: background 0.2s;
 		&:nth-child(odd):not(:first-child){
@@ -32,6 +32,8 @@ ul.postList3 {
 		}
 		& > * {
 			height: 100%;
+			padding-top: 12px;
+			padding-bottom: 12px;
 			display: flex;
 			align-items: center;
 			justify-content: space-evenly;
@@ -117,7 +119,7 @@ ul.postList3 {
 			img{
 				padding-top: 12px;
 				padding-bottom: 12px;
-				max-width: 100%;
+				max-width: 70%;
 				max-height: 100%;
 			}
 			& > .post-date{

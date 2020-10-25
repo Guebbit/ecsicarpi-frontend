@@ -62,7 +62,7 @@
 					:subtitle="event.subtitle"
 					:url="'events/'+event.uri"
 					:league_url="event.league ? 'leagues/'+event.league.uri : null"
-					:price="event.paywall"
+					:price="parseInt(event.paywall)"
 					:hashtags="event.array_hashtags"
 				/>
 			</ul>
@@ -89,6 +89,14 @@ library.add(faCalendar);
 
 const Component = Vue.extend({
 	name: 'Landing-page',
+	async asyncData ({ params, error, store }) {
+		return store.dispatch("getEvents").then(() => {
+			return{
+				events: store.getters['getEvents'],
+				activeEvents: store.getters['getEventsActive']
+			};
+		});
+	},
 	components: {
 		sectionContacts,
 		eventListCard,
@@ -96,8 +104,6 @@ const Component = Vue.extend({
 	},
 	computed: {
 		...mapGetters({
-			events: 'getEvents',
-			activeEvents: 'getEventsActive',
 			loading: 'getAwait',
 		}),
 	},
