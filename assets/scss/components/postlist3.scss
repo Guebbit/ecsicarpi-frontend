@@ -1,0 +1,135 @@
+$postList3-time-background: $secondary-color !default;
+$postList3-time-color: g-color("shades","white") !default;
+
+ul.postList3 {
+	margin: 0;
+	position: relative;
+	& > li {
+		height: 160px;
+		margin: 0;
+		transition: background 0.2s;
+		&:nth-child(odd):not(:first-child){
+			background: rgba($primary-color,0.05);
+		}
+		&.post-title{
+			background-color: $primary-color;
+			color: g-color("shades","white");
+			height: auto;
+			padding: 16px;
+			& > .list-title{
+				margin: 0;
+				display: inline-block;
+				font-size: 1.2em;
+				text-transform: capitalize;
+				font-weight: 600;
+				position:relative;
+				padding-left: 2.5em;
+				svg{
+					@include builder_abscenter-y;
+					left: 0;
+				}
+			}
+		}
+		& > * {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			&.post-date {
+				font-weight: 600;
+				font-size: 30px;
+				color: g-color("shades","black");
+				& > img {
+					border-radius: 4px;
+					display: block;
+					max-width: 120px;
+				}
+				time {
+					text-align: center;
+					display: block;
+					font-weight: 400;
+					font-size: 14px;
+					& > span{
+						display: block;
+						&.day{
+							font-size: 2em;
+							font-weight: 600;
+						}
+						&.month{
+							font-size: 1.2em;
+						}
+					}
+				}
+			}
+			&.post-place {
+				.hashtags{
+					text-align: center;
+					a{
+						color: inherit;
+						text-decoration: none;
+						font-weight: bold;
+						margin: 0 6px;
+						opacity: 0.7;
+						&:before{
+							content: "#";
+							color: $secondary-color;
+							font-size: 1.5em;
+							margin-right: 0.1em;
+						    vertical-align: sub;
+						}
+						&:hover{
+							opacity: 1;
+							transition: opacity 0.2s;
+						}
+						&:nth-child(odd){
+							&:before{
+								color: $primary-color;
+							}
+						}
+					}
+				}
+			}
+			&.post-action{
+				.btn,
+				.btn-large{
+					@include prefix((
+						box-shadow: none !important
+					), webkit);
+				}
+			}
+		}
+		@include builder_media("small") {
+			height: auto;
+			& > .col {
+				padding: 24px;
+			}
+		}
+	}
+	&.v2{
+		& > li {
+			time{
+				border-top-right-radius: 24px;
+				border-bottom-right-radius: 24px;
+				background: $postList3-time-background;
+				color: $postList3-time-color;
+				padding: 12px;
+			}
+			img{
+				padding-top: 12px;
+				padding-bottom: 12px;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			& > .post-date{
+				justify-content: center;
+			}
+			&.active,
+			&:hover{
+				time{
+					transition: padding 0.2s;
+					padding-left: 24px;
+				}
+			}
+		}
+	}
+}

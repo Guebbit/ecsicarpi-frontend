@@ -1,4 +1,4 @@
-import { stateMap, eventMap, mediaMap } from '@/interfaces';
+import { stateMap, eventMap, mediaMap, MediaChunk } from '@/interfaces';
 import Search from '@/assets/js/temporaryGuebbit/search'
 
 export default {
@@ -10,6 +10,18 @@ export default {
 		if(!state.events.hasOwnProperty(event_id))
 			return false;
 		return state.events[event_id];
+	},
+	//in ordine dal più nuovo
+	getEvents: (state: stateMap) :eventMap[] => {
+		return Object.values(state.events).sort(({ data_start: a } :eventMap, { data_start: b } :eventMap) => {
+			return new Date(b).getTime() - new Date(a).getTime();
+		});
+	},
+	//solo quelli attivi e in arrivo //TODO ordine per importanza (pagamento, valore custom, appartenente ad una lega)
+	getEventsActive: (state: stateMap, getters :any) :eventMap[] => {
+		return getters.getEvents.filter(({ data_start, data_end } :eventMap) => {
+			return new Date().getTime() <= new Date(data_end ? data_end : data_start).getTime();
+		});
 	},
 	/* array: ["parameter", "string-to-search"] */
 	getEventsByParams: (state: stateMap) => (searchable :[string, string][]) :eventMap[] => {
@@ -23,6 +35,18 @@ export default {
 		return state.events[event_id].media;
 	},
 
+	getEventCover: (state: stateMap, getters :any) => (event_id: string) :MediaChunk | false => {
+		let gallery :mediaMap[];
+		gallery = Object.values(getters.getEventGallery(event_id))
+		if(gallery.length < 1)
+			return false;
+		gallery = gallery.filter(({ role } :mediaMap) => {
+			return role === 'cover';
+		});
+		if(gallery.length < 1)
+			return false;
+		return gallery[0].MediaChunk;
+	},
 
 
 	// LOADINGS

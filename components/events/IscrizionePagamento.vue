@@ -116,7 +116,9 @@
 					</div>
 				</div>
 				<div class="text-center">
-					<b-button variant="secondary" size="sm" @click.prevent="storageReset()">{{ $t('subscription-another-button') }}</b-button>
+					<b-button variant="secondary" size="sm" @click.prevent="storageReset()">
+						{{ $t('pages.event-details.subscription-another-button') }}
+					</b-button>
 				</div>
 			</b-card>
 

@@ -22,7 +22,7 @@
 					:end="event.data_end"
 				/>
 				<div class="hashtag-wrapper d-flex justify-content-around flex-wrap">
-					<a href="#todo" v-for="hashtag in event.array_hashtags">{{ hashtag }}</a>
+					<a :href="'#todopage_'+hashtag" v-for="hashtag in event.array_hashtags">{{ hashtag }}</a>
 				</div>
 				<div class="d-flex justify-content-center">
 					<div class="platform-card" v-for="platform in event.platforms">

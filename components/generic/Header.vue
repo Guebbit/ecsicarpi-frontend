@@ -7,7 +7,8 @@
 		<b-collapse id="main-nav-collapse" is-nav>
 			<b-navbar-nav class="ml-auto">
 				<b-nav-item
-					v-for="route in routes"
+					v-for="(route, index) in routes"
+					:key="'main-nav-item-'+index"
 					:to="route"
 				>
 					{{ route.label }}
@@ -19,7 +20,7 @@
 					</template>
 					<b-dropdown-item
 						v-for="event in events"
-						:key="'link_'+event.id"
+						:key="'main-dropdown-item-'+event.id"
 						:to="'/events/'+event.uri"
 					>
 						{{ event.title }}

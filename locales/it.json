@@ -29,7 +29,9 @@
 	"event": "Evento | Eventi",
 	"username": "Nickname",
 	"city": "Città",
+	"league": "Lega",
 	"subscribe": "Iscriviti",
+	"more-info": "Informazioni",
 	"sponsors": "Sponsor | Sponsors",
 	"collaborators": "Collaboratore | Collaboratori",
 	"rule-book": "Regolamento",
@@ -69,6 +71,9 @@
 	"pages": {
 		"generic": {
 			"privacy-checkbox": "Preso atto dell'informativa <a target='_blank' href='https://www.garanteprivacy.it/documents/10160/0/Regolamento+UE+2016+679.+Arricchito+con+riferimenti+ai+Considerando+Aggiornato+alle+rettifiche+pubblicate+sulla+Gazzetta+Ufficiale++dell%27Unione+europea+127+del+23+maggio+2018'>Privacy art. 13 Reg. UE 679/2016</a> autorizzo il trattamento dei dati di cui al presente modulo di contatto per i fini e le modalità indicate nell'informativa"
+		},
+		"event-list": {
+			"event-list-title": "Calendario eventi"
 		},
 		"event-details": {
 			"subscription-event-ended-title": "Torneo concluso",

@@ -1,6 +1,8 @@
 $cssArrow1-width: 28px !default;
 $cssArrow1-distance: 100px !default;
 $cssArrow1-speed: 3s !default;
+$cssArrow1-primary: $primary-color !default;
+$cssArrow1-secondary: $secondary-color !default;
 
 .cssArrow1 {
 	position: relative;
@@ -22,7 +24,7 @@ $cssArrow1-speed: 3s !default;
 			top: 0;
 			height: 100%;
 			width: 51%;
-			background: $primary-color;
+			background: $cssArrow1-primary;
 		}
 		&:before {
 			left: 0;
@@ -52,13 +54,26 @@ $cssArrow1-speed: 3s !default;
 		@include builder_abscenter-xy;
 		display: block;
 		margin-top: -$cssArrow1-width;
-		color: $primary-color;
+		color: $cssArrow1-primary;
 		text-transform: uppercase;
 		white-space: nowrap;
 		opacity: .25;
 		@include prefix((
 			animation: pulse $cssArrow1-speed*0.6 linear alternate infinite
 		), webkit);
+	}
+	&.secondary{
+		& > div{
+			&:before,
+			&:after {
+				content: ' ';
+				position: absolute;
+				top: 0;
+				height: 100%;
+				width: 51%;
+				background: $cssArrow1-secondary;
+			}
+		}
 	}
 }
 
