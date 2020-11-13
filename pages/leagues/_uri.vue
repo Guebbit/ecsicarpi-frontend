@@ -69,10 +69,6 @@ const Component = Vue.extend({
 			getLeagues: 'getLeaguesByUri',
 		}),
 	},
-	created() {
-		//TODO bug da correggere, solo in produzione non mostra
-		this.$router.push("/");
-	},
 });
 
 export default Component;

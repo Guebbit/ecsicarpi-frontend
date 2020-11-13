@@ -26,7 +26,8 @@ $ticketCard1-info-shadow: rgba(255,255,255,0.5) !default;
 		&:before {
 			content: '';
 			position: absolute;
-			top: 0; right: 0;
+			top: 0;
+			right: 0;
 			border-top: 20px solid $ticketCard1-background;
 			border-left: 20px solid $ticketCard1-stub-background;
 			width: 0;
@@ -34,7 +35,8 @@ $ticketCard1-info-shadow: rgba(255,255,255,0.5) !default;
 		&:after {
 			content: '';
 			position: absolute;
-			bottom: 0; right: 0;
+			bottom: 0;
+			right: 0;
 			border-bottom: 20px solid $ticketCard1-background;
 			border-left: 20px solid $ticketCard1-stub-background;
 			width: 0;
@@ -105,17 +107,6 @@ $ticketCard1-info-shadow: rgba(255,255,255,0.5) !default;
 			}
 		}
 	}
-	&.info-right-side{
-		.check{
-			.info{
-				width: auto;
-				bottom: 0;
-				height: 100%;
-				flex-direction: column;
-				justify-content: space-evenly;
-			}
-		}
-	}
 	&.info-with-background{
 		.check{
 			.info{
@@ -125,6 +116,46 @@ $ticketCard1-info-shadow: rgba(255,255,255,0.5) !default;
 					&:before {
 						width: 100%;
 					}
+				}
+			}
+		}
+	}
+	@include builder_media("small") {
+		height: auto;
+		flex-direction: column;
+		.stub {
+			width: 80%;
+			&:before {
+				top: auto;
+				right: auto;
+				bottom: 0;
+				left: 0;
+				border-top: none;
+				border-left: none;
+				border-bottom: 20px solid $ticketCard1-background;
+				border-right: 20px solid $ticketCard1-stub-background;
+			}
+		}
+		.check {
+			width: 100%;
+			height: $ticketCard1-height;
+			.info {
+				display: flex;
+				justify-content: space-evenly;
+				bottom: 24px;
+				right: 0;
+			}
+		}
+	}
+	@include builder_media("medium-large") {
+		&.info-right-side{
+			.check{
+				.info{
+					width: auto;
+					bottom: 0;
+					height: 100%;
+					flex-direction: column;
+					justify-content: space-evenly;
 				}
 			}
 		}

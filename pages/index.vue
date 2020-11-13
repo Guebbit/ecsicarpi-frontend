@@ -174,9 +174,19 @@ $cssArrow1-speed: 1.5s;
 
 	.active-event-link{
 		display: block;
+		margin: 50px auto;
 		&:nth-of-type(n+3) {
 			.ticketCard1{
-				width: 80%;
+				.stub {
+					background: transparent;
+				    color: $primary-color;
+					border: 1px solid $primary-color;
+					font-size: 0.7em;
+					&:after,
+					&:before{
+						content: none;
+					}
+				}
 			}
 		}
 	}

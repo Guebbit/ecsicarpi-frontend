@@ -1,7 +1,7 @@
 import axios from 'axios';
-import store from './store';
+import { NuxtConfig } from '@nuxt/types'
 
-export default {
+const config :NuxtConfig = {
 	// Target (https://go.nuxtjs.dev/config-target)
 	target: 'static',
 
@@ -9,8 +9,8 @@ export default {
 		baseUrl: process.env.BASE_URL || 'http://localhost:3000',
 		apiUrl: process.env.API_URL || 'localhost',
 		enviroment: process.env.ENVIROMENT || 'development',
-		paypal_account: process.env.PAYPAL_ACCOUNT,
-		paypal_clientid: process.env.PAYPAL_CLIENTID,
+		paypal_account: process.env.PAYPAL_ACCOUNT!,
+		paypal_clientid: process.env.PAYPAL_CLIENTID!,
 		apikey_tinymce: "e0lb76i5zc7pm7wdm1ol3lpzgwhz6g4e92pqmqchg9oucjvs",
 	},
 
@@ -21,6 +21,7 @@ export default {
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 			// Internet Explorer visualizza come Edge
+			//@ts-ignore
 			{ 'http-equiv': 'x-ua-compatible', content: 'ie=edge' },
 			// WindowsPhone disabilità highlight dei link su mobile
 			{ name: 'msapplication-tap-highlight', content: 'no' },
@@ -85,8 +86,8 @@ export default {
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
 	build: {
 		extractCSS: true,
-		extend (config, ctx) {
-			config.module.rules.push({
+		extend (config/*, ctx*/) {
+			config.module!.rules.push({
 				test: /\.(ico|xml|webmanifest)$/,
 				loader: 'file-loader',
 				options: {
@@ -99,16 +100,36 @@ export default {
 
 	generate: {
 		subFolders: true,
-		routes() {
+		async routes() {
 			// can't use store
-			return axios.get(process.env.API_URL+'events').then(data => {
-				return data.data.map(event => {
-					return {
-						route: '/events/' + event.uri,
-						payload: event
-					}
+			let promises :Promise<any>[] = [];
+
+			promises.push(
+				axios.get('http://ecsicarpi.api.guebbit.com/events').then((data :any) => {
+					return data.data.map((event :any) => {
+						return {
+							route: '/events/' + event.uri,
+							payload: event
+						}
+					})
 				})
+			);
+			promises.push(
+				axios.get('http://ecsicarpi.api.guebbit.com/leagues').then((data :any) => {
+					return data.data.map((league :any) => {
+						return {
+							route: '/leagues/' + league.uri,
+							payload: league
+						}
+					})
+				})
+			);
+
+			return Promise.all(promises).then((routes) => {
+				return routes.reduce((flat, next) => flat.concat(next), []);
 			});
 		}
 	}
-}
+};
+
+export default config;

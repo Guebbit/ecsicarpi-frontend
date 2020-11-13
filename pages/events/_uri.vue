@@ -289,7 +289,6 @@ const Component = Vue.extend({
 		})
 
 
-
 		this.setLoading([true, 'event']);
 		this.getEvent(this.uri)
 			.then(() => {
