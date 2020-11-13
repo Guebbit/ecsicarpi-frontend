@@ -1,0 +1,164 @@
+//TODO GUEBBIT
+
+$ticketCard1-height: 300px !default;
+$ticketCard1-stub-background: $primary-color !default;
+$ticketCard1-stub-color: #FFFFFF !default;
+$ticketCard1-check-background: #EEEEEE !default;
+$ticketCard1-check-color: green !default;
+$ticketCard1-check-lines: $secondary-color !default;
+$ticketCard1-check-lines-height: 4px !default;
+$ticketCard1-background: #FFFFFF !default;
+$ticketCard1-info-shadow: rgba(255,255,255,0.5) !default;
+
+.ticketCard1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px auto;
+	height: $ticketCard1-height;
+	.stub {
+		background: $ticketCard1-stub-background;
+		height: 100%;
+		width: 30%;
+		color: white;
+		padding: 20px;
+		position: relative;
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0; right: 0;
+			border-top: 20px solid $ticketCard1-background;
+			border-left: 20px solid $ticketCard1-stub-background;
+			width: 0;
+		}
+		&:after {
+			content: '';
+			position: absolute;
+			bottom: 0; right: 0;
+			border-bottom: 20px solid $ticketCard1-background;
+			border-left: 20px solid $ticketCard1-stub-background;
+			width: 0;
+		}
+		time{
+			text-align: center;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			& > span{
+				display: block;
+				font-size: 2em;
+				line-height: 1.2;
+				&.day{
+					font-size: 6em;
+				}
+				&.month{
+					font-weight: 600;
+				}
+				&.year{
+					opacity: 0.54;
+				}
+			}
+		}
+	}
+	.check {
+		background: $ticketCard1-check-background;
+		height: 100%;
+		width: 70%;
+		padding: 40px;
+		position: relative;
+		overflow: hidden;
+		img{
+			@include builder_fullcenter;
+			object-fit: cover;
+		}
+		.main-title{
+			position: absolute;
+			z-index: 2;
+			top: 24px;
+			left: 24px;
+			font-size: 4em;
+		}
+		.info {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			position: absolute;
+			bottom: 24px;
+			right: 24px;
+			& > div {
+				padding: 6px;
+				&:before {
+					content: '';
+					background: $ticketCard1-check-lines;
+					display: block;
+					width: 40px;
+					height: $ticketCard1-check-lines-height;
+					margin-bottom: 5px;
+				}
+				.title {
+					font-size: 1em;
+					font-weight: 800;
+					text-transform: uppercase;
+					margin: 0;
+				}
+			}
+		}
+	}
+	&.info-right-side{
+		.check{
+			.info{
+				width: auto;
+				bottom: 0;
+				height: 100%;
+				flex-direction: column;
+				justify-content: space-evenly;
+			}
+		}
+	}
+	&.info-with-background{
+		.check{
+			.info{
+				& > div {
+					padding-top: 0;
+					background: $ticketCard1-info-shadow;
+					&:before {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+<div class="ticketCard1">
+	<div class="stub">
+		<time :datetime="start">
+			<span class="day">{{ startDay }}</span>
+			<span class="month">{{ $t("months")[startMonth] }}</span>
+			<span class="year">{{ startYear }}</span>
+		</time>
+	</div>
+	<div class="check">
+		<img :src="image" :alt="title">
+		<h4	class="main-title">
+			You're Invited
+		</h4>
+		<div class="info">
+			<div>
+				<h5 class="title">Date</h5>
+				<span>4/27/2016</span>
+			</div>
+			<div>
+				<h5 class="title">Issued By</h5>
+				<span>Ampersand</span>
+			</div>
+			<div>
+				<h5 class="title">Invite Number</h5>
+				<span>31415926</span>
+			</div>
+		</div>
+	</div>
+</div>
+*/

@@ -84,6 +84,7 @@ export default {
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
 	build: {
+		extractCSS: true,
 		extend (config, ctx) {
 			config.module.rules.push({
 				test: /\.(ico|xml|webmanifest)$/,

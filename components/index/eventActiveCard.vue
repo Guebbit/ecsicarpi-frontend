@@ -1,54 +1,50 @@
 <template>
-	<li class="post-body row observer-activate observer-mobile-only">
-		<div class="col-sm-12 col-lg-4 post-date">
-			<img :src="image" :alt="title">
-			<time :datetime="start">
-				<span class="day">{{ startDay }}</span>
-				<span class="month">{{ $t("months")[startMonth] }}</span>
-				<span class="year">{{ startYear }}</span>
-			</time>
-		</div>
-		<div class="col-sm-12 col-lg-4 post-place">
-			<div class="text-center">
-				<h5>{{ title }}</h5>
-				<span>{{ subtitle }}</span>
-				<div class="hashtags">
-					<a :href="'#todopage_'+hashtag" v-for="hashtag in hashtags">
-						{{ hashtag }}
-					</a>
+	<div>
+		<div class="ticketCard1 info-right-side info-with-background">
+			<div class="stub">
+				<time :datetime="start">
+					<span class="day">{{ startDay }}</span>
+					<span class="month">{{ $t("months")[startMonth] }}</span>
+					<span class="year">{{ startYear }}</span>
+				</time>
+			</div>
+			<div class="check">
+				<img :src="image" :alt="title">
+				<div class="info">
+					<b-button
+						v-if="league_url"
+						variant="secondary"
+						:to="league_url"
+						size="lg"
+					>
+						{{ $t('league') }}
+					</b-button>
+					<b-button
+						variant="primary"
+						v-if="todaytimestamp <= endTimestamp"
+						:to="url+'#subscription'"
+						size="lg"
+					>
+						{{ $t('subscribe') }}
+						<b-badge v-if="price"
+							class="ml-2"
+							variant="light"
+						>
+							{{ price }}€
+						</b-badge>
+					</b-button>
+					<b-button
+						:to="url"
+						v-else
+						variant="primary"
+						size="lg"
+					>
+						{{ $t('more-info') }}
+					</b-button>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-12 col-lg-4 post-action">
-			<b-button
-				v-if="league_url"
-				variant="secondary"
-				:to="league_url"
-			>
-				{{ $t('league') }}
-			</b-button>
-			<b-button
-				variant="primary"
-				v-if="todaytimestamp <= endTimestamp"
-				:to="url+'#subscription'"
-			>
-				{{ $t('subscribe') }}
-				<b-badge v-if="price"
-					class="ml-2"
-					variant="light"
-				>
-					{{ price }}€
-				</b-badge>
-			</b-button>
-			<b-button
-				:to="url"
-				v-else
-				variant="primary"
-			>
-				{{ $t('more-info') }}
-			</b-button>
-		</div>
-	</li>
+	</div>
 </template>
 
 <script lang="ts">
@@ -61,7 +57,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 library.add(faCalendar);
 
 const Component = Vue.extend({
-	name: 'EventListCard',
+	name: 'EventActiveCard',
 	components: {
 		FontAwesomeIcon,
 	},
@@ -146,26 +142,25 @@ const Component = Vue.extend({
 export default Component;
 </script>
 
+
 <style lang="scss">
 @import '@/assets/scss/core';
-@import '@/assets/scss/components/postlist3';
+$ticketCard1-height: 400px;
+@import '@/assets/scss/components/ticketcard1';
 
-ul.postList3 {
-	& > li {
-		@include media-breakpoint-up(lg) {
-
-		}
-		&.active,
-		&:hover{
-			@include media-breakpoint-up(lg) {
-				margin-right: -3px;
-				border-right: 3px solid;
-				border-color: $secondary-color;
+.ticketCard1{
+	.stub {
+		time{
+			.day{
+				font-size: 8em;
 			}
 		}
 	}
-	.post-action > *{
-		text-transform: uppercase;
+	.info{
+		color: $dark;
+		& > *{
+			border: 1px solid $light;
+		}
 	}
 }
 </style>

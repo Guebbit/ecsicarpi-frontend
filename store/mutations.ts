@@ -1,4 +1,4 @@
-import { stateMap, eventMap, subscriptionMap } from '@/interfaces';
+import { stateMap, eventMap, leagueMap, subscriptionMap } from '@/interfaces';
 import Vue from 'vue';
 
 export default {
@@ -11,6 +11,13 @@ export default {
 			state.events,
 			eventData.id,
 			eventData
+		);
+	},
+	setLeague: (state :stateMap, leagueData :leagueMap) :void => {
+		Vue.set(
+			state.leagues,
+			leagueData.id,
+			leagueData
 		);
 	},
 

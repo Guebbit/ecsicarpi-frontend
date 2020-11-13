@@ -20,36 +20,38 @@
 			</div>
 		</hero-header>
 
+
 		<section v-if="activeEvents.length > 0" class="event-active-section container d-flex justify-content-center align-items-center">
-			<div class="w-100">
+			<div class="container">
 				<h3 class="text-center"><b class="white-text highlight1 secondary">EVENTI IN CORSO</b></h3>
-				<div class="row">
-					<div v-for="event in activeEvents"
-						class="col-sm-12 col-md-6"
-					>
-						<b-link
-							:key="'link_'+event.id"
-							:to="'/events/'+event.uri"
-							class="event-link"
-						>
-							<b-card
-								:title="event.title"
-								:sub-title="event.subtitle"
-								:img-src="getCover(event.id)"
-								img-top
-								class="mt-50"
-							/>
-						</b-link>
-					</div>
-				</div>
+				<b-link
+					v-for="event in activeEvents"
+					:key="event.id+'_active-list-card'"
+					:to="'/events/'+event.uri"
+					class="active-event-link text-decoration-none"
+				>
+					<event-active-card
+						:key="event.id+'_active-card'"
+						:start="event.data_start"
+						:end="event.data_end"
+						:image="getCover(event.id)"
+						:title="event.title"
+						:subtitle="event.subtitle"
+						:url="'events/'+event.uri"
+						:league_url="event.league ? 'leagues/'+event.league.uri : null"
+						:price="parseInt(event.paywall)"
+						:hashtags="event.array_hashtags"
+					/>
+				</b-link>
 			</div>
 		</section>
+
 		<section class="event-list-section container d-flex justify-content-center align-items-center">
 			<ul class="postList3 v2 w-100">
 				<li class="post-title">
 					<h4 class="list-title">
 						{{ $t('pages.event-list.event-list-title') }}
-						<font-awesome-icon :icon="['fas', 'calendar']" />
+						<font-awesome-icon class="ml-2" :icon="['fas', 'calendar']" />
 					</h4>
 				</li>
 				<event-list-card
@@ -77,6 +79,7 @@ import Vue from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 
 import eventListCard from '@/components/index/eventListCard.vue';
+import eventActiveCard from '@/components/index/eventActiveCard.vue';
 import sectionContacts from '@/components/events/Contatti.vue';
 import { lazyload, activator } from "@/assets/js/temporaryGuebbit2";
 import { MediaChunk } from '@/interfaces';
@@ -93,13 +96,14 @@ const Component = Vue.extend({
 		return store.dispatch("getEvents").then(() => {
 			return{
 				events: store.getters['getEvents'],
-				activeEvents: store.getters['getEventsActive']
+				activeEvents: store.getters['getEventsActive'].reverse()
 			};
 		});
 	},
 	components: {
 		sectionContacts,
 		eventListCard,
+		eventActiveCard,
 		FontAwesomeIcon,
 	},
 	computed: {
@@ -138,8 +142,8 @@ export default Component;
 $cssArrow1-speed: 1.5s;
 
 @import '@/assets/scss/core';
-@import '@/assets/scss/components/postlist3';
 @import '@/assets/scss/components/cssarrow1';
+
 
 #landing-page{
 	margin-bottom: 50px;
@@ -167,5 +171,15 @@ $cssArrow1-speed: 1.5s;
 			}
 		}
 	}
+
+	.active-event-link{
+		display: block;
+		&:nth-of-type(n+3) {
+			.ticketCard1{
+				width: 80%;
+			}
+		}
+	}
+
 }
 </style>

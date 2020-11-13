@@ -1,3 +1,4 @@
+$postList3-height: 200px !default;
 $postList3-time-background: $secondary-color !default;
 $postList3-time-color: g-color("shades","white") !default;
 
@@ -6,6 +7,7 @@ ul.postList3 {
 	margin: 0;
 	position: relative;
 	& > li {
+		min-height: $postList3-height;
 		margin: 0;
 		transition: background 0.2s;
 		&:nth-child(odd):not(:first-child){
@@ -14,7 +16,7 @@ ul.postList3 {
 		&.post-title{
 			background-color: $primary-color;
 			color: g-color("shades","white");
-			height: auto;
+			min-height: auto;
 			padding: 16px;
 			& > .list-title{
 				margin: 0;
@@ -31,7 +33,7 @@ ul.postList3 {
 			}
 		}
 		& > * {
-			height: 100%;
+			min-height: 100%;
 			padding-top: 12px;
 			padding-bottom: 12px;
 			display: flex;
@@ -101,7 +103,6 @@ ul.postList3 {
 			}
 		}
 		@include builder_media("small") {
-			height: auto;
 			& > .col {
 				padding: 24px;
 			}

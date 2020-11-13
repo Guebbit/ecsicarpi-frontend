@@ -27,14 +27,12 @@
 				<div class="d-flex justify-content-center">
 					<div class="platform-card" v-for="platform in event.platforms">
 						<img v-if="platform.MediaChunk.thumbnail"
-							class="img-fluid"
 							:src="platform.MediaChunk.thumb100"
 							:data-src="platform.MediaChunk.thumb800"
 							:title="platform.title ? platform.title : platform.name"
 							:alt="platform.alt"
 						/>
 						<img v-else
-							class="img-fluid"
 							:src="platform.MediaChunk.thumb800"
 							:title="platform.title ? platform.title : platform.name"
 							:alt="platform.alt"
@@ -255,8 +253,6 @@ const Component = Vue.extend({
 			});
 		},
 
-
-
 		comingsoon() :boolean {
 			//@ts-ignore
 			return this.startTimestamp >= this.todaytimestamp;
@@ -269,7 +265,6 @@ const Component = Vue.extend({
 			//@ts-ignore
 			return this.endTimestamp <= this.todaytimestamp;
 		},
-
 	},
 	methods: {
 		...mapActions({
@@ -395,8 +390,11 @@ $cssArrow1-speed: 1.5s;
 			}
 		}
 		.platform-card{
-			max-width: 300px;
 			margin: 24px;
+			img{
+				max-height: 300px;
+				max-width: 300px;
+			}
 		}
 	}
 

@@ -58,6 +58,37 @@ export default{
 
 
 
+
+
+
+	getLeagues: async ({ getters, commit } :any) :Promise<any> => {
+		//se il dato è ancora nuovo, non faccio la richiesta e tengo i dati vecchi
+		if(getters.getLeaguesLastupdate + getters.getLeaguesRefresh > Date.now())
+			return false;
+		return axios.get(process.env.apiUrl+'leagues').then(data => {
+			for(let i :number = data.data.length; i--; )
+				commit("setLeague", data.data[i]);
+			/*
+			return data.data.map((event :eventMap) => {
+				return event;
+			})
+			*/
+			return data;
+		})
+	},
+	//TODO
+	getLeaguesById: async ({ dispatch } :any, id_league :string) :Promise<any> => {
+		//TODO fare bene
+		return dispatch("getLeagues");
+	},
+	getLeaguesByUri: async ({ dispatch } :any, uri :string) :Promise<any> => {
+		//TODO fare bene
+		return dispatch("getLeagues");
+	},
+
+
+
+
 	//TODO
 	addEvent: async ({ commit } :any, eventData :eventMap) :Promise<any> => {
 		eventData = {

@@ -23,6 +23,11 @@ export interface partnerMap {
 	title :string
 }
 
+export interface leagueMap {
+	//TODO
+	[parameter :string]: any
+}
+
 export interface eventMap {
 	//TODO
 	[parameter :string]: any
@@ -53,6 +58,9 @@ export interface stateMap {
 	events: {
 		[event_id :string] :eventMap
 	},
+	leagues: {
+		[league_id :string] :leagueMap
+	},
 	subscriptions: {
 		[subscription_id :string] :subscriptionMap
 	},
@@ -65,12 +73,18 @@ export interface stateMap {
 		event: {
 			[event_id :string]: number
 		}
+		leagues :number
+		league: {
+			[event_id :string]: number
+		}
 		subscriptions: number
 	}
 	// tempo minimo prima di un refresh
 	refresh: {
 		events :number
 		event :number
+		leagues :number
+		league :number
 		subscriptions :number
 	}
 }
