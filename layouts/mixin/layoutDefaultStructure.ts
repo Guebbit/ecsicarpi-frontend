@@ -105,6 +105,12 @@ export default Vue.extend({
 			}],
 		}
 	},
+	data(){
+		return {
+			//default, tanto è necessario anche isCompatible = false
+			compatibilityModal: true as boolean,
+		}
+	},
 	computed: {
 		isCompatible() :boolean {
 			if(!process.client)

@@ -3,6 +3,11 @@
 		<main-header id="mainHeader" :routes = "routesArray"/>
 		<Nuxt />
 		<main-footer id="mainFooter" />
+
+		<modal-compatibility
+			:show="!isCompatible && compatibilityModal"
+			@input="(value) => compatibilityModal = value"
+		/>
 	</div>
 </template>
 
@@ -13,7 +18,9 @@ import Vue from 'vue';
 
 import MainHeader from '@/components/generic/Header.vue';
 import MainFooter from '@/components/generic/Footer.vue';
+
 import layoutDefaultStructure from './mixin/layoutDefaultStructure';
+import modalCompatibility from '@/components/modals/modalCompatibility.vue';
 
 const Component = Vue.extend({
 	mixins: [
@@ -21,7 +28,8 @@ const Component = Vue.extend({
 	],
 	components: {
 		MainHeader,
-		MainFooter
+		MainFooter,
+		modalCompatibility,
 	},
 	computed: {
 		routesArray() {
