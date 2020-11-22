@@ -20,17 +20,11 @@
 			</div>
 		</hero-header>
 
-
 		<section v-if="activeEvents.length > 0" class="event-active-section container d-flex justify-content-center align-items-center">
 			<div class="container">
 				<h3 class="text-center"><b class="white-text highlight1 secondary">EVENTI IN CORSO</b></h3>
-				<b-link
-					v-for="event in activeEvents"
-					:key="event.id+'_active-list-card'"
-					:to="'/events/'+event.uri"
-					class="active-event-link text-decoration-none"
-				>
 					<event-active-card
+						v-for="event in activeEvents"
 						:key="event.id+'_active-card'"
 						:start="event.data_start"
 						:end="event.data_end"
@@ -42,7 +36,6 @@
 						:price="parseInt(event.paywall)"
 						:hashtags="event.array_hashtags"
 					/>
-				</b-link>
 			</div>
 		</section>
 

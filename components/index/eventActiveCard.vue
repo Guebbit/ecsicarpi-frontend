@@ -1,50 +1,53 @@
 <template>
-	<div>
-		<div class="ticketCard1 info-right-side info-with-background">
-			<div class="stub">
-				<time :datetime="start">
-					<span class="day">{{ startDay }}</span>
-					<span class="month">{{ $t("months")[startMonth] }}</span>
-					<span class="year">{{ startYear }}</span>
-				</time>
-			</div>
-			<div class="check">
-				<img :src="image" :alt="title">
-				<div class="info">
-					<b-button
-						v-if="league_url"
-						variant="secondary"
-						:to="league_url"
-						size="lg"
+	<b-link
+		block
+		:to="url"
+	 	class="ticketCard1 info-right-side info-with-background text-decoration-none"
+	>
+		<a class="card-link" href="#test"></a>
+		<div class="stub">
+			<time :datetime="start">
+				<span class="day">{{ startDay }}</span>
+				<span class="month">{{ $t("months")[startMonth] }}</span>
+				<span class="year">{{ startYear }}</span>
+			</time>
+		</div>
+		<div class="check">
+			<img :src="image" :alt="title">
+			<div class="info">
+				<b-button
+					v-if="league_url"
+					variant="secondary"
+					:to="league_url"
+					size="lg"
+				>
+					{{ $t('league') }}
+				</b-button>
+				<b-button
+					variant="primary"
+					v-if="todaytimestamp <= endTimestamp"
+					:to="url+'#subscription'"
+					size="lg"
+				>
+					{{ $t('subscribe') }}
+					<b-badge v-if="price"
+						class="ml-2"
+						variant="light"
 					>
-						{{ $t('league') }}
-					</b-button>
-					<b-button
-						variant="primary"
-						v-if="todaytimestamp <= endTimestamp"
-						:to="url+'#subscription'"
-						size="lg"
-					>
-						{{ $t('subscribe') }}
-						<b-badge v-if="price"
-							class="ml-2"
-							variant="light"
-						>
-							{{ price }}€
-						</b-badge>
-					</b-button>
-					<b-button
-						:to="url"
-						v-else
-						variant="primary"
-						size="lg"
-					>
-						{{ $t('more-info') }}
-					</b-button>
-				</div>
+						{{ price }}€
+					</b-badge>
+				</b-button>
+				<b-button
+					:to="url"
+					v-else
+					variant="primary"
+					size="lg"
+				>
+					{{ $t('more-info') }}
+				</b-button>
 			</div>
 		</div>
-	</div>
+	</b-link>
 </template>
 
 <script lang="ts">
