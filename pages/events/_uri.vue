@@ -440,14 +440,6 @@ $cssArrow1-speed: 1.5s;
 				font-size: 1.2em;
 			}
 		}
-		.to-right{
-			transform: rotate(270deg);
-			margin-right: 1em;
-		}
-		.to-left{
-			transform: rotate(90deg);
-			margin-left: 1em;
-		}
 		.ballTitle{
 			text-transform: uppercase;
 		}

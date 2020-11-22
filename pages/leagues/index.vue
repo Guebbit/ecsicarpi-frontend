@@ -7,9 +7,9 @@ import Vue from 'vue'
 
 const Component = Vue.extend({
 	name: 'leagues-list-page',
-	created() {
-		this.$router.push("/");
-	}
+	beforeRouteEnter (to, from, next) {
+		next("/");
+	},
 });
 
 export default Component;
