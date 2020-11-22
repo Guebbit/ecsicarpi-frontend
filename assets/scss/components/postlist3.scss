@@ -36,14 +36,17 @@ ul.postList3 {
 			min-height: 100%;
 			padding-top: 12px;
 			padding-bottom: 12px;
-			display: flex;
-			align-items: center;
-			justify-content: space-evenly;
 			&.post-date {
 				font-weight: 600;
 				font-size: 30px;
 				color: g-color("shades","black");
-				& > img {
+				& > a{
+					text-decoration: none !important;
+					display: flex;
+					align-items: center;
+					justify-content: space-evenly;
+				}
+				img {
 					border-radius: 4px;
 					display: block;
 					max-width: 120px;
@@ -123,8 +126,10 @@ ul.postList3 {
 				max-width: 70%;
 				max-height: 100%;
 			}
-			& > .post-date{
-				justify-content: center;
+			& > .post-date {
+				& > a{
+					justify-content: center;
+				}
 			}
 			&.active,
 			&:hover{

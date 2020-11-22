@@ -1,12 +1,14 @@
 <template>
 	<li class="post-body row observer-activate observer-mobile-only">
 		<div class="col-sm-12 col-lg-4 post-date">
-			<img :src="image" :alt="title">
-			<time :datetime="start">
-				<span class="day">{{ startDay }}</span>
-				<span class="month">{{ $t("months")[startMonth] }}</span>
-				<span class="year">{{ startYear }}</span>
-			</time>
+			<b-link :to="url">
+				<img :src="image" :alt="title">
+				<time :datetime="start">
+					<span class="day">{{ startDay }}</span>
+					<span class="month">{{ $t("months")[startMonth] }}</span>
+					<span class="year">{{ startYear }}</span>
+				</time>
+			</b-link>
 		</div>
 		<div class="col-sm-12 col-lg-4 post-place">
 			<div class="text-center">
